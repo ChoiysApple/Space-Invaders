@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D144CB827EDB6610025303D /* InvaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D144CB727EDB6610025303D /* InvaderType.swift */; };
+		7D144CBA27EDBAD10025303D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D144CB927EDBAD10025303D /* Constants.swift */; };
 		7DF0702927EC501E00ED52EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0702827EC501E00ED52EB /* AppDelegate.swift */; };
 		7DF0702F27EC501E00ED52EB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0702E27EC501E00ED52EB /* GameScene.swift */; };
 		7DF0703127EC501E00ED52EB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0703027EC501E00ED52EB /* GameViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		7D144CB727EDB6610025303D /* InvaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvaderType.swift; sourceTree = "<group>"; };
+		7D144CB927EDBAD10025303D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7DF0702527EC501E00ED52EB /* SpaceInvaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceInvaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DF0702827EC501E00ED52EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DF0702E27EC501E00ED52EB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -61,10 +63,10 @@
 			children = (
 				7DF0703F27EC504100ED52EB /* Base */,
 				7DF0702E27EC501E00ED52EB /* GameScene.swift */,
-				7DF0703027EC501E00ED52EB /* GameViewController.swift */,
 				7DF0704027EC506F00ED52EB /* GameOverScene.swift */,
 				7DF0703527EC502000ED52EB /* Assets.xcassets */,
 				7D144CB727EDB6610025303D /* InvaderType.swift */,
+				7D144CB927EDBAD10025303D /* Constants.swift */,
 			);
 			path = SpaceInvaders;
 			sourceTree = "<group>";
@@ -72,6 +74,7 @@
 		7DF0703F27EC504100ED52EB /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				7DF0703027EC501E00ED52EB /* GameViewController.swift */,
 				7DF0702827EC501E00ED52EB /* AppDelegate.swift */,
 				7DF0703227EC501E00ED52EB /* Main.storyboard */,
 				7DF0703727EC502000ED52EB /* LaunchScreen.storyboard */,
@@ -155,6 +158,7 @@
 				7DF0704127EC506F00ED52EB /* GameOverScene.swift in Sources */,
 				7DF0702927EC501E00ED52EB /* AppDelegate.swift in Sources */,
 				7D144CB827EDB6610025303D /* InvaderType.swift in Sources */,
+				7D144CBA27EDBAD10025303D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
