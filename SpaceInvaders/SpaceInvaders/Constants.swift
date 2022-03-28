@@ -12,6 +12,10 @@ let kInvaderGridSpacing = CGSize(width: 12, height: 12)
 let kInvaderRowCount = 6
 let kInvaderColCount = 6
 
-//Ship
+// Ship
 let kShipSize = CGSize(width: 30, height: 16)
 let kShipName = "ship"
+
+// HUD
+let kScoreHudName = "scoreHud"
+let kHealthHudName = "healthHud"

@@ -11,37 +11,15 @@ import CoreMotion
 
 class GameScene: SKScene {
   
-  // Private GameScene Properties
-  
-  var contentCreated = false
-  
-  // Object Lifecycle Management
-  
   // Scene Setup and Content Creation
   override func didMove(to view: SKView) {
-    
-//    if (!self.contentCreated) {
-//      self.createContent()
-//      self.contentCreated = true
-//    }
-      
+
+      setupHud()
       setupInvaders()
-  }
-  
-  func createContent() {
-    
-    let invader = SKSpriteNode(imageNamed: "InvaderA_00.png")
-    
-    invader.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-    
-    self.addChild(invader)
-    
-    // black space color
-    self.backgroundColor = SKColor.black
+      setupShip()
   }
   
   // Scene Update
-  
   override func update(_ currentTime: TimeInterval) {
     /* Called before each frame is rendered */
   }
@@ -63,14 +41,15 @@ class GameScene: SKScene {
 }
 
 
+//MARK: Invaders
 extension GameScene {
     
     func makeInvader(ofType invaderType: InvaderType) -> SKNode {
       
         let invader = SKSpriteNode(color: invaderType.color, size: InvaderType.size)
-      invader.name = InvaderType.name
+        invader.name = InvaderType.name
       
-      return invader
+        return invader
     }
     
     func setupInvaders() {
@@ -100,8 +79,58 @@ extension GameScene {
                 y: invaderPositionY
                 )
             }
-        }
+        }   // END of loop
+    }       // END of Funciton
+
+}
+
+//MARK: Ship
+extension GameScene {
+    
+    func setupShip() {
+        
+        let ship = makeShip()
+
+        ship.position = CGPoint(x: size.width / 2.0, y: kShipSize.height / 2.0)
+        addChild(ship)
     }
 
+    func makeShip() -> SKNode {
+        let ship = SKSpriteNode(color: SKColor.green, size: kShipSize)
+        ship.name = kShipName
+        return ship
+    }
+
+}
+
+
+//MARK: HUD
+extension GameScene {
+    func setupHud() {
+    
+      let scoreLabel = SKLabelNode(fontNamed: "Courier")
+      scoreLabel.name = kScoreHudName
+      scoreLabel.fontSize = 25
+      scoreLabel.fontColor = SKColor.green
+      scoreLabel.text = String(format: "Score: %04u", 0)
+      
+      scoreLabel.position = CGPoint(
+        x: frame.size.width / 2,
+        y: size.height - (40 + scoreLabel.frame.size.height/2)
+      )
+      addChild(scoreLabel)
+      
+      let healthLabel = SKLabelNode(fontNamed: "Courier")
+      healthLabel.name = kHealthHudName
+      healthLabel.fontSize = 25
+      healthLabel.fontColor = SKColor.red
+      healthLabel.text = String(format: "Health: %.0f%%", 100.0)
+      
+      healthLabel.position = CGPoint(
+        x: frame.size.width / 2,
+        y: size.height - (80 + healthLabel.frame.size.height/2)
+      )
+      addChild(healthLabel)
+    }
 
 }
