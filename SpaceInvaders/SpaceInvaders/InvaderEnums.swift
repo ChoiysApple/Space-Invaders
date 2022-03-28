@@ -27,3 +27,12 @@ enum InvaderType {
     }
     
 }
+
+enum InvaderMovementDirection {
+  case right
+  case left
+  case downThenRight
+  case downThenLeft
+  case none
+}
+

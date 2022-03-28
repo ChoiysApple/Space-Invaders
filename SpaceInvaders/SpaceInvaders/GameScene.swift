@@ -10,6 +10,11 @@ import SpriteKit
 import CoreMotion
 
 class GameScene: SKScene {
+    
+    var invaderMovementDirection: InvaderMovementDirection = .right
+    var timeOfLastMove: CFTimeInterval = 0.0
+    let timePerMove: CFTimeInterval = 1.0
+
   
   // Scene Setup and Content Creation
   override func didMove(to view: SKView) {
@@ -21,7 +26,9 @@ class GameScene: SKScene {
   
   // Scene Update
   override func update(_ currentTime: TimeInterval) {
-    /* Called before each frame is rendered */
+    
+      moveInvaders(forUpdate: currentTime)
+      
   }
   
   // Scene Update Helpers
@@ -100,6 +107,27 @@ extension GameScene {
         ship.name = kShipName
         return ship
     }
+    
+    func moveInvaders(forUpdate currentTime: CFTimeInterval) {
+      
+      if (currentTime - timeOfLastMove < timePerMove) { return }
+      
+        enumerateChildNodes(withName: InvaderType.name) { node, stop in
+            switch self.invaderMovementDirection {
+            case .right:
+              node.position = CGPoint(x: node.position.x + 10, y: node.position.y)
+            case .left:
+              node.position = CGPoint(x: node.position.x - 10, y: node.position.y)
+            case .downThenLeft, .downThenRight:
+              node.position = CGPoint(x: node.position.x, y: node.position.y - 10)
+            case .none:
+              break
+        }
+        self.timeOfLastMove = currentTime
+      }
+        
+    }
+
 
 }
 
