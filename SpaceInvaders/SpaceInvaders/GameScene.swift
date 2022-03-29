@@ -11,10 +11,13 @@ import CoreMotion
 
 class GameScene: SKScene {
     
+    let motionManager = CMMotionManager()
+    
     var invaderMovementDirection: InvaderMovementDirection = .right
     var timeOfLastMove: CFTimeInterval = 0.0
     let timePerMove: CFTimeInterval = 1.0
 
+    
   
   // Scene Setup and Content Creation
   override func didMove(to view: SKView) {
@@ -22,13 +25,16 @@ class GameScene: SKScene {
       setupHud()
       setupInvaders()
       setupShip()
+      
+      motionManager.startAccelerometerUpdates()
+
   }
   
   // Scene Update
   override func update(_ currentTime: TimeInterval) {
     
       moveInvaders(forUpdate: currentTime)
-      
+      processUserMotion(forUpdate: currentTime)
   }
   
   // Scene Update Helpers
@@ -87,30 +93,14 @@ extension GameScene {
                 )
             }
         }   // END of loop
-    }       // END of Funciton
-
-}
-
-//MARK: Ship
-extension GameScene {
+    }   // END of Funciton
     
-    func setupShip() {
-        
-        let ship = makeShip()
-
-        ship.position = CGPoint(x: size.width / 2.0, y: kShipSize.height / 2.0)
-        addChild(ship)
-    }
-
-    func makeShip() -> SKNode {
-        let ship = SKSpriteNode(color: SKColor.green, size: kShipSize)
-        ship.name = kShipName
-        return ship
-    }
-    
+    //MARK: Invader Movement
     func moveInvaders(forUpdate currentTime: CFTimeInterval) {
       
       if (currentTime - timeOfLastMove < timePerMove) { return }
+        
+        determineInvaderMovementDirection()
       
         enumerateChildNodes(withName: InvaderType.name) { node, stop in
             switch self.invaderMovementDirection {
@@ -127,6 +117,85 @@ extension GameScene {
       }
         
     }
+    
+    func determineInvaderMovementDirection() {
+
+      var proposedMovementDirection: InvaderMovementDirection = invaderMovementDirection
+      
+      enumerateChildNodes(withName: InvaderType.name) { node, stop in
+        
+        switch self.invaderMovementDirection {
+        case .right:
+          if (node.frame.maxX >= node.scene!.size.width - 1.0) {
+            proposedMovementDirection = .downThenLeft
+            
+            stop.pointee = true
+          }
+        case .left:
+          if (node.frame.minX <= 1.0) {
+            proposedMovementDirection = .downThenRight
+            
+            stop.pointee = true
+          }
+          
+        case .downThenLeft:
+          proposedMovementDirection = .left
+          
+          stop.pointee = true
+          
+        case .downThenRight:
+          proposedMovementDirection = .right
+          
+          stop.pointee = true
+          
+        default:
+          break
+        }
+        
+      }
+      
+      //7
+      if (proposedMovementDirection != invaderMovementDirection) {
+        invaderMovementDirection = proposedMovementDirection
+      }
+    }
+
+
+
+}
+
+//MARK: Ship
+extension GameScene {
+    
+    func makeShip() -> SKNode {
+        let ship = SKSpriteNode(color: SKColor.green, size: kShipSize)
+        ship.name = kShipName
+        return ship
+    }
+    
+    func setupShip() {
+        
+        let ship = makeShip()
+
+        ship.position = CGPoint(x: size.width / 2.0, y: kShipSize.height / 2.0)
+        addChild(ship)
+    }
+    
+    func processUserMotion(forUpdate currentTime: CFTimeInterval) {
+      
+        if let ship = childNode(withName: kShipName) as? SKSpriteNode {
+
+            if let data = motionManager.accelerometerData {
+          
+                if fabs(data.acceleration.x) > 0.2 {
+            
+                    print("Acceleration: \(data.acceleration.x)")
+                    //TODO: Move Ship
+                }
+            }
+        }
+    }
+
 
 
 }
