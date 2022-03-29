@@ -170,6 +170,12 @@ extension GameScene {
     func makeShip() -> SKNode {
         let ship = SKSpriteNode(color: SKColor.green, size: kShipSize)
         ship.name = kShipName
+        
+        ship.physicsBody = SKPhysicsBody(rectangleOf: ship.frame.size)
+        ship.physicsBody!.isDynamic = true
+        ship.physicsBody!.affectedByGravity = false
+        ship.physicsBody!.mass = 0.02
+        
         return ship
     }
     
@@ -188,15 +194,11 @@ extension GameScene {
             if let data = motionManager.accelerometerData {
           
                 if fabs(data.acceleration.x) > 0.2 {
-            
-                    print("Acceleration: \(data.acceleration.x)")
-                    //TODO: Move Ship
+                    ship.physicsBody!.applyForce(CGVector(dx: 40 * CGFloat(data.acceleration.x), dy: 0))
                 }
             }
         }
     }
-
-
 
 }
 
