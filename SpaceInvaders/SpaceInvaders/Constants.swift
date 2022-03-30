@@ -7,6 +7,13 @@
 
 import SpriteKit
 
+// Physics Category
+let kInvaderCategory: UInt32 = 0x1 << 0
+let kShipFiredBulletCategory: UInt32 = 0x1 << 1
+let kShipCategory: UInt32 = 0x1 << 2
+let kSceneEdgeCategory: UInt32 = 0x1 << 3
+let kInvaderFiredBulletCategory: UInt32 = 0x1 << 4
+
 // Invaders
 let kInvaderGridSpacing = CGSize(width: 12, height: 12)
 let kInvaderRowCount = 6

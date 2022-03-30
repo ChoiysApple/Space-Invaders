@@ -40,13 +40,6 @@ enum InvaderMovementDirection {
 enum BulletType {
     case shipFired, invaderFired
     
-//    var color: SKColor {
-//        switch self {
-//        case .shipFired: return SKColor.green
-//        case .invaderFired: return SKColor.magenta
-//        }
-//    }
-    
     var bullet: SKNode {
         switch self {
         case .shipFired:

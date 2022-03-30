@@ -29,6 +29,7 @@ class GameScene: SKScene {
         setupShip()
       
         motionManager.startAccelerometerUpdates()
+        physicsBody!.categoryBitMask = kSceneEdgeCategory
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
     }
   
@@ -60,6 +61,12 @@ extension GameScene {
       
         let invader = SKSpriteNode(color: invaderType.color, size: InvaderType.size)
         invader.name = InvaderType.name
+        
+        invader.physicsBody = SKPhysicsBody(rectangleOf: invader.frame.size)
+        invader.physicsBody!.isDynamic = false
+        invader.physicsBody!.categoryBitMask = kInvaderCategory
+        invader.physicsBody!.contactTestBitMask = 0x0
+        invader.physicsBody!.collisionBitMask = 0x0
       
         return invader
     }
@@ -175,6 +182,10 @@ extension GameScene {
         ship.physicsBody!.affectedByGravity = false
         ship.physicsBody!.mass = 0.02
         
+        ship.physicsBody!.categoryBitMask = kShipCategory
+        ship.physicsBody!.contactTestBitMask = 0x0
+        ship.physicsBody!.collisionBitMask = kSceneEdgeCategory
+
         return ship
     }
     
@@ -210,13 +221,24 @@ extension GameScene {
         case .shipFired:
             bullet = SKSpriteNode(color: SKColor.green, size: kBulletSize)
             bullet.name = kShipFiredBulletName
+            bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.frame.size)
+            bullet.physicsBody!.categoryBitMask = kShipFiredBulletCategory
+            bullet.physicsBody!.contactTestBitMask = kInvaderCategory
         case .invaderFired:
             bullet = SKSpriteNode(color: SKColor.magenta, size: kBulletSize)
             bullet.name = kInvaderFiredBulletName
+            bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.frame.size)
+            bullet.physicsBody!.categoryBitMask = kInvaderFiredBulletCategory
+            bullet.physicsBody!.contactTestBitMask = kShipCategory
             break
         }
           
-          return bullet
+        
+        bullet.physicsBody!.isDynamic = true
+        bullet.physicsBody!.affectedByGravity = false
+        bullet.physicsBody!.collisionBitMask = 0x0
+
+        return bullet
     }
     
     func fireBullet(bullet: SKNode, toDestination destination: CGPoint, withDuration duration: CFTimeInterval, andSoundFileName soundName: String) {
@@ -323,3 +345,5 @@ extension GameScene {
     }
 
 }
+
+
