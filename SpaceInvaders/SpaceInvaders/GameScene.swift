@@ -18,6 +18,7 @@ class GameScene: SKScene {
     let timePerMove: CFTimeInterval = 1.0
 
     var tapQueue = [Int]()
+    var contactQueue = [SKPhysicsContact]()
 
   
     // Scene Setup and Content Creation
@@ -29,8 +30,10 @@ class GameScene: SKScene {
         setupShip()
       
         motionManager.startAccelerometerUpdates()
-        physicsBody!.categoryBitMask = kSceneEdgeCategory
+        
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsBody!.categoryBitMask = kSceneEdgeCategory
+        physicsWorld.contactDelegate = self
     }
   
     //MARK: Scene Update
@@ -41,6 +44,8 @@ class GameScene: SKScene {
         
         processUserMotion(forUpdate: currentTime)
         processUserTaps(forUpdate: currentTime)
+        
+        processContacts(forUpdate: currentTime)
     }
   
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -346,4 +351,40 @@ extension GameScene {
 
 }
 
+extension GameScene: SKPhysicsContactDelegate {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        contactQueue.append(contact)
+    }
+    
+    func handle(_ contact: SKPhysicsContact) {
+    
+        // Ensure you haven't already handled this contact and removed its nodes
+        if contact.bodyA.node?.parent == nil || contact.bodyB.node?.parent == nil { return }
+      
+        let nodeNames = [contact.bodyA.node!.name!, contact.bodyB.node!.name!]
+        if nodeNames.contains(kShipName) && nodeNames.contains(kInvaderFiredBulletName) {
+        
+            run(SKAction.playSoundFileNamed("ShipHit.wav", waitForCompletion: false))
+            print("Ship hit")
+            contact.bodyA.node!.removeFromParent()
+            contact.bodyB.node!.removeFromParent()
+            
+        } else if nodeNames.contains(InvaderType.name) && nodeNames.contains(kShipFiredBulletName) {
+            
+            run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
+            print("Invader Hit")
+            contact.bodyA.node!.removeFromParent()
+            contact.bodyB.node!.removeFromParent()
+        }
+    }
+    
+    func processContacts(forUpdate currentTime: CFTimeInterval) {
+        for contact in contactQueue {
+            handle(contact)
+            if let index = contactQueue.firstIndex(of: contact) { contactQueue.remove(at: index) }
+      }
+    }
 
+
+}
