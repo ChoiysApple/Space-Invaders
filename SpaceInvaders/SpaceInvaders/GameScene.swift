@@ -36,10 +36,10 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
     
         moveInvaders(forUpdate: currentTime)
+        fireInvaderBullets(forUpdate: currentTime)
         
         processUserMotion(forUpdate: currentTime)
         processUserTaps(forUpdate: currentTime)
-
     }
   
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -233,6 +233,7 @@ extension GameScene {
         addChild(bullet)
     }
 
+    // Ship Bullet
     func fireShipBullets() {
         if let _ = childNode(withName: kShipFiredBulletName) { return }     // Check is there any existing bullet
         guard let ship = childNode(withName: kShipName) else { return }     // Check is there ship
@@ -259,6 +260,34 @@ extension GameScene {
         }
     }
 
+    // Invader Bullet
+    func fireInvaderBullets(forUpdate currentTime: CFTimeInterval) {
+        if let _ = childNode(withName: kInvaderFiredBulletName) { return }
+      
+        var allInvaders = [SKNode]()
+        enumerateChildNodes(withName: InvaderType.name) { node, stop in
+            allInvaders.append(node)
+        }
+        
+        guard allInvaders.count > 0 else { return }
+
+        // get random invader
+        let invader = allInvaders[Int(arc4random_uniform(UInt32(allInvaders.count)))]
+
+        let bullet = makeBullet(ofType: .invaderFired)
+        bullet.position = CGPoint(
+            x: invader.position.x,
+            y: invader.position.y - invader.frame.size.height / 2 + bullet.frame.size.height / 2)
+
+        let bulletDestination = CGPoint(x: invader.position.x, y: -(bullet.frame.size.height / 2))
+        fireBullet(
+            bullet: bullet,
+            toDestination: bulletDestination,
+            withDuration: 2.0,
+            andSoundFileName: "InvaderBullet.wav")
+        
+      
+    }
 
 
 }
