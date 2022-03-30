@@ -29,7 +29,7 @@ class GameScene: SKScene {
         setupShip()
       
         motionManager.startAccelerometerUpdates()
-
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
     }
   
     //MARK: Scene Update
@@ -253,7 +253,6 @@ extension GameScene {
     
     func processUserTaps(forUpdate currentTime: CFTimeInterval) {
         
-        print(tapQueue)
         for tapCount in tapQueue {
             if tapCount == 1 { fireShipBullets() }
             tapQueue.remove(at: 0)
