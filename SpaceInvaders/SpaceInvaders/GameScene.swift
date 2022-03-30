@@ -19,7 +19,9 @@ class GameScene: SKScene {
 
     var tapQueue = [Int]()
     var contactQueue = [SKPhysicsContact]()
-
+    
+    var score: Int = 0
+    var shipHealth: Float = 1.0
   
     // Scene Setup and Content Creation
     //MARK: Init
@@ -340,7 +342,7 @@ extension GameScene {
       healthLabel.name = kHealthHudName
       healthLabel.fontSize = 25
       healthLabel.fontColor = SKColor.red
-      healthLabel.text = String(format: "Health: %.0f%%", 100.0)
+      healthLabel.text = String(format: "Health: %.0f%%", shipHealth * 100.0)
       
       healthLabel.position = CGPoint(
         x: frame.size.width / 2,
@@ -348,6 +350,24 @@ extension GameScene {
       )
       addChild(healthLabel)
     }
+    
+    func adjustScore(by points: Int) {
+        score += points
+      
+        if let score = childNode(withName: kScoreHudName) as? SKLabelNode {
+            score.text = String(format: "Score: %04u", self.score)
+        }
+    }
+
+    func adjustShipHealth(by healthAdjustment: Float) {
+      
+        shipHealth = max(shipHealth + healthAdjustment, 0)
+      
+        if let health = childNode(withName: kHealthHudName) as? SKLabelNode {
+            health.text = String(format: "Health: %.0f%%", self.shipHealth * 100)
+        }
+    }
+
 
 }
 
@@ -366,16 +386,32 @@ extension GameScene: SKPhysicsContactDelegate {
         if nodeNames.contains(kShipName) && nodeNames.contains(kInvaderFiredBulletName) {
         
             run(SKAction.playSoundFileNamed("ShipHit.wav", waitForCompletion: false))
-            print("Ship hit")
-            contact.bodyA.node!.removeFromParent()
-            contact.bodyB.node!.removeFromParent()
+            
+            adjustShipHealth(by: -0.334)
+            
+            if shipHealth <= 0 {
+                contact.bodyA.node!.removeFromParent()
+                contact.bodyB.node!.removeFromParent()
+            } else {
+                if let ship = childNode(withName: kShipName) {
+                    ship.alpha = CGFloat(shipHealth)
+                  
+                    if contact.bodyA.node == ship {
+                        contact.bodyB.node!.removeFromParent()
+                    } else {
+                        contact.bodyA.node!.removeFromParent()
+                    }
+                }
+            }
+
             
         } else if nodeNames.contains(InvaderType.name) && nodeNames.contains(kShipFiredBulletName) {
             
             run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
-            print("Invader Hit")
+            adjustScore(by: 100)
             contact.bodyA.node!.removeFromParent()
             contact.bodyB.node!.removeFromParent()
+            
         }
     }
     
