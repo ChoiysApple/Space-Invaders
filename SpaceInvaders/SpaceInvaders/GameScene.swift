@@ -17,40 +17,39 @@ class GameScene: SKScene {
     var timeOfLastMove: CFTimeInterval = 0.0
     let timePerMove: CFTimeInterval = 1.0
 
-    
-  
-  // Scene Setup and Content Creation
-  override func didMove(to view: SKView) {
+    var tapQueue = [Int]()
 
-      setupHud()
-      setupInvaders()
-      setupShip()
+  
+    // Scene Setup and Content Creation
+    //MARK: Init
+    override func didMove(to view: SKView) {
+
+        setupHud()
+        setupInvaders()
+        setupShip()
       
-      motionManager.startAccelerometerUpdates()
+        motionManager.startAccelerometerUpdates()
 
-  }
+    }
   
-  // Scene Update
-  override func update(_ currentTime: TimeInterval) {
+    //MARK: Scene Update
+    override func update(_ currentTime: TimeInterval) {
     
-      moveInvaders(forUpdate: currentTime)
-      processUserMotion(forUpdate: currentTime)
-  }
+        moveInvaders(forUpdate: currentTime)
+        
+        processUserMotion(forUpdate: currentTime)
+        processUserTaps(forUpdate: currentTime)
+
+    }
   
-  // Scene Update Helpers
-  
-  // Invader Movement Helpers
-  
-  // Bullet Helpers
-  
-  // User Tap Helpers
-  
-  // HUD Helpers
-  
-  // Physics Contact Helpers
-  
-  // Game End Helpers
-  
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            if (touch.tapCount == 1) {
+                tapQueue.append(1)
+            }
+        }
+    }
+
 }
 
 
@@ -199,6 +198,69 @@ extension GameScene {
             }
         }
     }
+
+}
+
+//MARK: Bullet
+extension GameScene {
+    func makeBullet(ofType bulletType: BulletType) -> SKNode {
+        var bullet: SKNode
+      
+        switch bulletType {
+        case .shipFired:
+            bullet = SKSpriteNode(color: SKColor.green, size: kBulletSize)
+            bullet.name = kShipFiredBulletName
+        case .invaderFired:
+            bullet = SKSpriteNode(color: SKColor.magenta, size: kBulletSize)
+            bullet.name = kInvaderFiredBulletName
+            break
+        }
+          
+          return bullet
+    }
+    
+    func fireBullet(bullet: SKNode, toDestination destination: CGPoint, withDuration duration: CFTimeInterval, andSoundFileName soundName: String) {
+      
+        let bulletAction = SKAction.sequence([
+            SKAction.move(to: destination, duration: duration),
+            SKAction.wait(forDuration: 3.0 / 60.0),
+            SKAction.removeFromParent()
+            ])
+        let soundAction = SKAction.playSoundFileNamed(soundName, waitForCompletion: true)
+
+        bullet.run(SKAction.group([bulletAction, soundAction]))
+      
+        addChild(bullet)
+    }
+
+    func fireShipBullets() {
+        if let _ = childNode(withName: kShipFiredBulletName) { return }     // Check is there any existing bullet
+        guard let ship = childNode(withName: kShipName) else { return }     // Check is there ship
+        
+        
+        let bullet = makeBullet(ofType: .shipFired)
+        bullet.position = CGPoint(x: ship.position.x, y: ship.position.y + ship.frame.size.height - bullet.frame.size.height / 2)
+  
+        let bulletDestination = CGPoint(x: ship.position.x, y: frame.size.height + bullet.frame.size.height / 2 )
+  
+        fireBullet(
+            bullet: bullet,
+            toDestination: bulletDestination,
+            withDuration: 1.0,
+            andSoundFileName: "ShipBullet.wav"
+        )
+    }
+    
+    func processUserTaps(forUpdate currentTime: CFTimeInterval) {
+        
+        print(tapQueue)
+        for tapCount in tapQueue {
+            if tapCount == 1 { fireShipBullets() }
+            tapQueue.remove(at: 0)
+        }
+    }
+
+
 
 }
 

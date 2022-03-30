@@ -19,3 +19,8 @@ let kShipName = "ship"
 // HUD
 let kScoreHudName = "scoreHud"
 let kHealthHudName = "healthHud"
+
+// Bullet
+let kShipFiredBulletName = "shipFiredBullet"
+let kInvaderFiredBulletName = "invaderFiredBullet"
+let kBulletSize = CGSize(width:4, height: 8)
