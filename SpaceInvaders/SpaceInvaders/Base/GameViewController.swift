@@ -23,9 +23,8 @@ class GameViewController: UIViewController {
         skView.backgroundColor = .black
 
         // Create and configure the scene.
-        let scene = GameScene(size: skView.frame.size)
+        let scene = MainMenuScene(size: skView.frame.size)
         skView.presentScene(scene)
-        
     }
 
     override var shouldAutorotate: Bool {
@@ -37,6 +36,6 @@ class GameViewController: UIViewController {
     }
 
     override var prefersStatusBarHidden: Bool {
-        return true
+        return false
     }
 }

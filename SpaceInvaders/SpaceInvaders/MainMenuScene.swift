@@ -1,41 +1,33 @@
 //
-//  GameOverScene.swift
+//  MainMenuScene.swift
 //  SpaceInvaders
 //
-//  Created by Daegeon Choi on 2022/03/24.
+//  Created by Daegeon Choi on 2022/03/31.
 //
 
-import UIKit
 import SpriteKit
 
-class GameOverScene: SKScene {
-    
-    var contentCreated = false
+class MainMenuScene: SKScene {
     
     override func didMove(to view: SKView) {
-        
-        if (!self.contentCreated) {
-            self.createContent()
-            self.contentCreated = true
-        }
+        createContent()
     }
+
     
     func createContent() {
         
         let gameOverLabel = SKLabelNode(fontNamed: "Courier")
-        gameOverLabel.fontSize = 50
+        gameOverLabel.fontSize = 30
         gameOverLabel.fontColor = SKColor.white
-        gameOverLabel.text = "Game Over!"
-        gameOverLabel.position = CGPoint(x: self.size.width/2, y: 2.0 / 3.0 * self.size.height);
-        
+        gameOverLabel.text = "Space Invaders"
+        gameOverLabel.position = CGPoint(x: self.size.width/2, y: self.size.height/2);
         self.addChild(gameOverLabel)
         
         let tapLabel = SKLabelNode(fontNamed: "Courier")
-        tapLabel.fontSize = 25
+        tapLabel.fontSize = 20
         tapLabel.fontColor = SKColor.white
-        tapLabel.text = "(Tap to Play Again)"
+        tapLabel.text = "Tap Anywhere"
         tapLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 40);
-        
         self.addChild(tapLabel)
         
         // black space color
@@ -51,4 +43,5 @@ class GameOverScene: SKScene {
         self.view?.presentScene(gameScene, transition: SKTransition.doorsCloseHorizontal(withDuration: 1.0))
         
     }
+
 }

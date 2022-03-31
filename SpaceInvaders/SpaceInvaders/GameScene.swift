@@ -11,6 +11,8 @@ import CoreMotion
 
 class GameScene: SKScene {
     
+    var safeAreaInset = UIEdgeInsets()
+    
     let motionManager = CMMotionManager()
     
     var invaderMovementDirection: InvaderMovementDirection = .right
@@ -215,10 +217,12 @@ extension GameScene {
     }
     
     func setupShip() {
-        
-        let ship = makeShip()
 
-        ship.position = CGPoint(x: size.width / 2.0, y: kShipSize.height / 2.0)
+        let ship = makeShip()
+        let bottomInset = self.view?.safeAreaInsets.bottom ?? CGFloat(40)
+        print(bottomInset)
+
+        ship.position = CGPoint(x: size.width / 2.0, y: kShipSize.height / 2.0 + bottomInset)
         addChild(ship)
     }
     
