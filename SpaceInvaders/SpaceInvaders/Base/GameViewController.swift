@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
 
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
+        skView.backgroundColor = .black
 
         // Create and configure the scene.
         let scene = GameScene(size: skView.frame.size)
@@ -32,11 +33,7 @@ class GameViewController: UIViewController {
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+        return .portrait
     }
 
     override var prefersStatusBarHidden: Bool {
