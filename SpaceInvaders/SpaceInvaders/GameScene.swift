@@ -15,9 +15,9 @@ class GameScene: SKScene {
     
     var invaderMovementDirection: InvaderMovementDirection = .right
     var timeOfLastMove: CFTimeInterval = 0.0
-    let timePerMove: CFTimeInterval = 1.0
+    var timePerMove: CFTimeInterval = 1.0
 
-    var tapQueue = [Int]()
+    var tapQueue = [Int]()  // This queue can handel multiple tap action
     var contactQueue = [SKPhysicsContact]()
     
     var score: Int = 0
@@ -150,13 +150,15 @@ extension GameScene {
         case .right:
           if (node.frame.maxX >= node.scene!.size.width - 1.0) {
             proposedMovementDirection = .downThenLeft
-            
+            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+              
             stop.pointee = true
           }
         case .left:
           if (node.frame.minX <= 1.0) {
             proposedMovementDirection = .downThenRight
-            
+            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+              
             stop.pointee = true
           }
           
@@ -176,13 +178,20 @@ extension GameScene {
         
       }
       
-      //7
-      if (proposedMovementDirection != invaderMovementDirection) {
-        invaderMovementDirection = proposedMovementDirection
-      }
+      if proposedMovementDirection != invaderMovementDirection { invaderMovementDirection = proposedMovementDirection }
     }
 
-
+    func adjustInvaderMovement(to timePerMove: CFTimeInterval) {
+      
+        if self.timePerMove <= 0 { return }
+      
+        let ratio: CGFloat = CGFloat(self.timePerMove / timePerMove)
+        self.timePerMove = timePerMove
+      
+        enumerateChildNodes(withName: InvaderType.name) { node, stop in
+            node.speed = node.speed * ratio
+        }
+    }
 
 }
 
