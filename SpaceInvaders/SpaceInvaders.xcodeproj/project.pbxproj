@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		7D144CB827EDB6610025303D /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D144CB727EDB6610025303D /* Enums.swift */; };
 		7D144CBA27EDBAD10025303D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D144CB927EDBAD10025303D /* Constants.swift */; };
+		7D50A51E27F5470000BA53F8 /* ShipHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A991127F3F80100FDB418 /* ShipHit.wav */; };
+		7D50A52027F5470600BA53F8 /* InvaderHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A991027F3F80100FDB418 /* InvaderHit.wav */; };
+		7D50A52227F5491D00BA53F8 /* ShipBullet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A990F27F3F80100FDB418 /* ShipBullet.wav */; };
+		7D50A52327F54A3600BA53F8 /* InvaderBullet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A991227F3F80100FDB418 /* InvaderBullet.wav */; };
 		7DF0702927EC501E00ED52EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0702827EC501E00ED52EB /* AppDelegate.swift */; };
 		7DF0702F27EC501E00ED52EB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0702E27EC501E00ED52EB /* GameScene.swift */; };
 		7DF0703127EC501E00ED52EB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0703027EC501E00ED52EB /* GameViewController.swift */; };
@@ -166,9 +170,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D50A51E27F5470000BA53F8 /* ShipHit.wav in Resources */,
+				7D50A52027F5470600BA53F8 /* InvaderHit.wav in Resources */,
 				7DF0703427EC501E00ED52EB /* Main.storyboard in Resources */,
 				7DF0703627EC502000ED52EB /* Assets.xcassets in Resources */,
+				7D50A52227F5491D00BA53F8 /* ShipBullet.wav in Resources */,
 				7DF0703927EC502000ED52EB /* LaunchScreen.storyboard in Resources */,
+				7D50A52327F54A3600BA53F8 /* InvaderBullet.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
