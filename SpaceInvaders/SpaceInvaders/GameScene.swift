@@ -219,7 +219,7 @@ extension GameScene {
     func setupShip() {
 
         let ship = makeShip()
-        let bottomInset = self.view?.safeAreaInsets.bottom ?? CGFloat(40)
+        let bottomInset = self.view?.safeAreaInsets.bottom ?? CGFloat(34)
         print(bottomInset)
 
         ship.position = CGPoint(x: size.width / 2.0, y: kShipSize.height / 2.0 + bottomInset)
@@ -347,30 +347,32 @@ extension GameScene {
 //MARK: HUD
 extension GameScene {
     func setupHud() {
-    
-      let scoreLabel = SKLabelNode(fontNamed: "Courier")
-      scoreLabel.name = kScoreHudName
-      scoreLabel.fontSize = 25
-      scoreLabel.fontColor = SKColor.green
-      scoreLabel.text = String(format: "Score: %04u", 0)
+        
+        let topInset = self.view?.safeAreaInsets.top ?? CGFloat(34)
+        
+        let scoreLabel = SKLabelNode(fontNamed: "Courier")
+        scoreLabel.name = kScoreHudName
+        scoreLabel.fontSize = 25
+        scoreLabel.fontColor = SKColor.green
+        scoreLabel.text = String(format: "Score: %04u", 0)
       
-      scoreLabel.position = CGPoint(
-        x: frame.size.width / 2,
-        y: size.height - (40 + scoreLabel.frame.size.height/2)
-      )
-      addChild(scoreLabel)
+        scoreLabel.position = CGPoint(
+            x: frame.size.width / 2,
+            y: size.height - (40 + scoreLabel.frame.size.height/2 + topInset)
+        )
+        addChild(scoreLabel)
       
-      let healthLabel = SKLabelNode(fontNamed: "Courier")
-      healthLabel.name = kHealthHudName
-      healthLabel.fontSize = 25
-      healthLabel.fontColor = SKColor.red
-      healthLabel.text = String(format: "Health: %.0f%%", shipHealth * 100.0)
+        let healthLabel = SKLabelNode(fontNamed: "Courier")
+        healthLabel.name = kHealthHudName
+        healthLabel.fontSize = 25
+        healthLabel.fontColor = SKColor.red
+        healthLabel.text = String(format: "Health: %.0f%%", shipHealth * 100.0)
       
-      healthLabel.position = CGPoint(
-        x: frame.size.width / 2,
-        y: size.height - (80 + healthLabel.frame.size.height/2)
-      )
-      addChild(healthLabel)
+        healthLabel.position = CGPoint(
+            x: frame.size.width / 2,
+            y: size.height - (80 + healthLabel.frame.size.height/2 + topInset)
+        )
+        addChild(healthLabel)
     }
     
     func adjustScore(by points: Int) {
