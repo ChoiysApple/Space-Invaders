@@ -65,9 +65,15 @@ class GameScene: SKScene {
 extension GameScene {
     
     func makeInvader(ofType invaderType: InvaderType) -> SKNode {
-      
-        let invader = SKSpriteNode(color: invaderType.color, size: InvaderType.size)
+        
+        let invaderTextures = [SKTexture(imageNamed: "Invader\(invaderType.rawValue)_00"),
+                               SKTexture(imageNamed: "Invader\(invaderType.rawValue)_01")]
+
+        print(invaderTextures)
+        let invader = SKSpriteNode(texture: invaderTextures[0])
         invader.name = InvaderType.name
+        
+        invader.run(SKAction.repeatForever(SKAction.animate(with: invaderTextures, timePerFrame: timePerMove)))
         
         invader.physicsBody = SKPhysicsBody(rectangleOf: invader.frame.size)
         invader.physicsBody!.isDynamic = false
@@ -77,6 +83,8 @@ extension GameScene {
       
         return invader
     }
+    
+    
     
     func setupInvaders() {
 

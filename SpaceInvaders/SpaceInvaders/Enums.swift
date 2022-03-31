@@ -7,8 +7,10 @@
 
 import SpriteKit
 
-enum InvaderType {
-    case a, b, c
+enum InvaderType: String {
+    case a = "A"
+    case b = "B"
+    case c = "C"
 
     static var size: CGSize {
         return CGSize(width: 24, height: 16)
@@ -25,7 +27,7 @@ enum InvaderType {
         case .c: return SKColor.blue
         }
     }
-    
+        
 }
 
 enum InvaderMovementDirection {
