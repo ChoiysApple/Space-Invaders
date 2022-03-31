@@ -22,7 +22,7 @@ class GameScene: SKScene {
     
     var score: Int = 0
     var shipHealth: Float = 1.0
-  
+
     // Scene Setup and Content Creation
     //MARK: Init
     override func didMove(to view: SKView) {
@@ -48,6 +48,8 @@ class GameScene: SKScene {
         processUserTaps(forUpdate: currentTime)
         
         processContacts(forUpdate: currentTime)
+        
+        checkGameOver()
     }
   
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -428,6 +430,27 @@ extension GameScene: SKPhysicsContactDelegate {
             if let index = contactQueue.firstIndex(of: contact) { contactQueue.remove(at: index) }
       }
     }
+}
 
+//MARK: Game Over
+extension GameScene {
+    func checkGameOver() {
+      
+        var isInvaderTooLow = false
+        enumerateChildNodes(withName: InvaderType.name) { node, stop in
+        
+            if (Float(node.frame.minY) <= kMinInvaderBottomHeight)   {
+                isInvaderTooLow = true
+                stop.pointee = true
+            }
+        }
+      
+        if childNode(withName: InvaderType.name) == nil || isInvaderTooLow || childNode(withName: kShipName) == nil {
+            motionManager.stopAccelerometerUpdates()
+            
+            let gameOverScene: GameOverScene = GameOverScene(size: size)
+            view?.presentScene(gameOverScene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1.0))
+        }
+    }
 
 }

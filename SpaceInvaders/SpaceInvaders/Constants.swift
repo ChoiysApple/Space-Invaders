@@ -31,3 +31,6 @@ let kHealthHudName = "healthHud"
 let kShipFiredBulletName = "shipFiredBullet"
 let kInvaderFiredBulletName = "invaderFiredBullet"
 let kBulletSize = CGSize(width:4, height: 8)
+
+// rule
+let kMinInvaderBottomHeight: Float = 32.0
