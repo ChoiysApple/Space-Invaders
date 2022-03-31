@@ -69,7 +69,6 @@ extension GameScene {
         let invaderTextures = [SKTexture(imageNamed: "Invader\(invaderType.rawValue)_00"),
                                SKTexture(imageNamed: "Invader\(invaderType.rawValue)_01")]
 
-        print(invaderTextures)
         let invader = SKSpriteNode(texture: invaderTextures[0])
         invader.name = InvaderType.name
         
@@ -189,7 +188,7 @@ extension GameScene {
 extension GameScene {
     
     func makeShip() -> SKNode {
-        let ship = SKSpriteNode(color: SKColor.green, size: kShipSize)
+        let ship = SKSpriteNode(imageNamed: "Ship.png")
         ship.name = kShipName
         
         ship.physicsBody = SKPhysicsBody(rectangleOf: ship.frame.size)
