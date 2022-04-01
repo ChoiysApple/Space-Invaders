@@ -61,6 +61,23 @@ class GameScene: SKScene {
             }
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        for touch in (touches) {
+            let location = touch.location(in: self)
+
+            if(location.x < self.size.width*0.3){
+                print("Left")
+            } else if(location.x > self.size.width*0.7){
+                
+                print("Right")
+            } else {
+                
+                print("Middle")
+            }
+        }
+    }
 
 }
 
@@ -339,7 +356,6 @@ extension GameScene {
         
       
     }
-
 
 }
 
