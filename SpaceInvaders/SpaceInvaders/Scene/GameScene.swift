@@ -13,8 +13,6 @@ class GameScene: SKScene {
     
     var safeAreaInset = UIEdgeInsets()
     
-    let motionManager = CMMotionManager()
-    
     var invaderMovementDirection: InvaderMovementDirection = .right
     var timeOfLastMove: CFTimeInterval = 0.0
     var timePerMove: CFTimeInterval = 1.0
@@ -29,15 +27,13 @@ class GameScene: SKScene {
     //MARK: Init
     override func didMove(to view: SKView) {
 
-        setupHud()
-        setupInvaders()
-        setupShip()
-      
-        motionManager.startAccelerometerUpdates()
-        
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsBody!.categoryBitMask = kSceneEdgeCategory
         physicsWorld.contactDelegate = self
+
+        setupHud()
+        setupInvaders()
+        setupShip()
     }
   
     //MARK: Scene Update
@@ -45,10 +41,8 @@ class GameScene: SKScene {
     
         moveInvaders(forUpdate: currentTime)
         fireInvaderBullets(forUpdate: currentTime)
-        
-        processUserMotion(forUpdate: currentTime)
+
         processUserTaps(forUpdate: currentTime)
-        
         processContacts(forUpdate: currentTime)
         
         checkGameOver()
@@ -63,20 +57,24 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        guard let ship = childNode(withName: kShipName) as? SKSpriteNode else { return }
 
         for touch in (touches) {
             let location = touch.location(in: self)
 
             if(location.x < self.size.width*0.3){
                 print("Left")
+                ship.physicsBody?.applyImpulse(CGVector(dx: -10,dy: 0))
             } else if(location.x > self.size.width*0.7){
-                
                 print("Right")
+                ship.physicsBody?.applyImpulse(CGVector(dx: 10,dy: 0))
             } else {
-                
                 print("Middle")
             }
         }
+        
+        
     }
 
 }
@@ -230,6 +228,7 @@ extension GameScene {
         ship.physicsBody!.contactTestBitMask = 0x0
         ship.physicsBody!.collisionBitMask = kSceneEdgeCategory
 
+
         return ship
     }
     
@@ -242,20 +241,6 @@ extension GameScene {
         ship.position = CGPoint(x: size.width / 2.0, y: kShipSize.height / 2.0 + bottomInset)
         addChild(ship)
     }
-    
-    func processUserMotion(forUpdate currentTime: CFTimeInterval) {
-      
-        if let ship = childNode(withName: kShipName) as? SKSpriteNode {
-
-            if let data = motionManager.accelerometerData {
-          
-                if fabs(data.acceleration.x) > 0.2 {
-                    ship.physicsBody!.applyForce(CGVector(dx: 40 * CGFloat(data.acceleration.x), dy: 0))
-                }
-            }
-        }
-    }
-
 }
 
 //MARK: Bullet
@@ -479,7 +464,6 @@ extension GameScene {
         }
       
         if childNode(withName: InvaderType.name) == nil || isInvaderTooLow || childNode(withName: kShipName) == nil {
-            motionManager.stopAccelerometerUpdates()
             
             let gameOverScene: GameOverScene = GameOverScene(size: size)
             view?.presentScene(gameOverScene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1.0))
