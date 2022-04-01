@@ -73,6 +73,16 @@
 			path = Asset;
 			sourceTree = "<group>";
 		};
+		7D8BA6C727F6BF1400FC8FA2 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				7D50A52627F59B2800BA53F8 /* MainMenuScene.swift */,
+				7DF0702E27EC501E00ED52EB /* GameScene.swift */,
+				7DF0704027EC506F00ED52EB /* GameOverScene.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		7DF0701C27EC501D00ED52EB = {
 			isa = PBXGroup;
 			children = (
@@ -94,9 +104,7 @@
 			children = (
 				7DF0703F27EC504100ED52EB /* Base */,
 				7D1A991427F3F82E00FDB418 /* Asset */,
-				7D50A52627F59B2800BA53F8 /* MainMenuScene.swift */,
-				7DF0702E27EC501E00ED52EB /* GameScene.swift */,
-				7DF0704027EC506F00ED52EB /* GameOverScene.swift */,
+				7D8BA6C727F6BF1400FC8FA2 /* Scene */,
 				7D144CB727EDB6610025303D /* Enums.swift */,
 				7D144CB927EDBAD10025303D /* Constants.swift */,
 			);
