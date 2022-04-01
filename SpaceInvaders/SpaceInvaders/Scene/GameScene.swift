@@ -350,29 +350,31 @@ extension GameScene {
         
         let topInset = self.view?.safeAreaInsets.top ?? CGFloat(34)
         
-        let scoreLabel = SKLabelNode(fontNamed: "Courier")
-        scoreLabel.name = kScoreHudName
-        scoreLabel.fontSize = 25
-        scoreLabel.fontColor = SKColor.green
-        scoreLabel.text = String(format: "Score: %04u", 0)
-      
-        scoreLabel.position = CGPoint(
-            x: frame.size.width / 2,
-            y: size.height - (40 + scoreLabel.frame.size.height/2 + topInset)
-        )
-        addChild(scoreLabel)
-      
         let healthLabel = SKLabelNode(fontNamed: "Courier")
         healthLabel.name = kHealthHudName
-        healthLabel.fontSize = 25
+        healthLabel.fontSize = 17
         healthLabel.fontColor = SKColor.red
         healthLabel.text = String(format: "Health: %.0f%%", shipHealth * 100.0)
       
         healthLabel.position = CGPoint(
-            x: frame.size.width / 2,
-            y: size.height - (80 + healthLabel.frame.size.height/2 + topInset)
+            x: healthLabel.frame.size.width/2 + 20,
+            y: size.height - (healthLabel.frame.size.height/2 + topInset + 10)
         )
         addChild(healthLabel)
+
+        
+        let scoreLabel = SKLabelNode(fontNamed: "Courier")
+        scoreLabel.name = kScoreHudName
+        scoreLabel.fontSize = 17
+        scoreLabel.fontColor = SKColor.green
+        scoreLabel.text = String(format: "Score: %04u", 0)
+      
+        scoreLabel.position = CGPoint(
+            x: frame.size.width - (scoreLabel.frame.size.width/2 + 20),
+            y: size.height - (scoreLabel.frame.size.height/2 + topInset + 10)
+        )
+        addChild(scoreLabel)
+      
     }
     
     func adjustScore(by points: Int) {
