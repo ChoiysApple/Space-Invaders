@@ -22,6 +22,8 @@ class GameScene: SKScene {
     
     var score: Int = 0
     var shipHealth: Float = 1.0
+    
+    var shipDirection = ShipMovementDireciton.idle
 
     // Scene Setup and Content Creation
     //MARK: Init
@@ -42,10 +44,11 @@ class GameScene: SKScene {
         moveInvaders(forUpdate: currentTime)
         fireInvaderBullets(forUpdate: currentTime)
 
-        processUserTaps(forUpdate: currentTime)
         processContacts(forUpdate: currentTime)
         
         checkGameOver()
+        
+        moveShip(direction: shipDirection, speed: 3)
     }
   
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -54,23 +57,26 @@ class GameScene: SKScene {
                 tapQueue.append(1)
             }
         }
+        
+        shipDirection = .idle
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        guard let ship = childNode(withName: kShipName) as? SKSpriteNode else { return }
 
         for touch in (touches) {
             let location = touch.location(in: self)
 
             if(location.x < self.size.width*0.3){
-                print("Left")
-                ship.physicsBody?.applyImpulse(CGVector(dx: -10,dy: 0))
+                shipDirection = .left
+                print("Left") 
+                
             } else if(location.x > self.size.width*0.7){
+                shipDirection = .right
                 print("Right")
-                ship.physicsBody?.applyImpulse(CGVector(dx: 10,dy: 0))
             } else {
                 print("Middle")
+                processMiddleTaps()
             }
         }
         
@@ -228,7 +234,6 @@ extension GameScene {
         ship.physicsBody!.contactTestBitMask = 0x0
         ship.physicsBody!.collisionBitMask = kSceneEdgeCategory
 
-
         return ship
     }
     
@@ -240,6 +245,17 @@ extension GameScene {
 
         ship.position = CGPoint(x: size.width / 2.0, y: kShipSize.height / 2.0 + bottomInset)
         addChild(ship)
+    }
+    
+    func moveShip(direction: ShipMovementDireciton, speed: CGFloat) {
+        
+        guard let ship = childNode(withName: kShipName) as? SKSpriteNode else { return }
+        
+        let destinationX = ship.position.x + (direction.rawValue * speed)
+        
+        if (destinationX > ship.size.width/2 || destinationX < frame.size.width - ship.size.width/2) {
+            ship.position = CGPoint(x: ship.position.x + (direction.rawValue * speed), y: ship.position.y)
+        }
     }
 }
 
@@ -263,7 +279,6 @@ extension GameScene {
             bullet.physicsBody!.contactTestBitMask = kShipCategory
             break
         }
-          
         
         bullet.physicsBody!.isDynamic = true
         bullet.physicsBody!.affectedByGravity = false
@@ -305,8 +320,8 @@ extension GameScene {
         )
     }
     
-    func processUserTaps(forUpdate currentTime: CFTimeInterval) {
-        
+    func processMiddleTaps() {
+
         for tapCount in tapQueue {
             if tapCount == 1 { fireShipBullets() }
             tapQueue.remove(at: 0)

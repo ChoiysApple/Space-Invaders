@@ -31,11 +31,17 @@ enum InvaderType: String {
 }
 
 enum InvaderMovementDirection {
-  case right
-  case left
-  case downThenRight
-  case downThenLeft
-  case none
+    case right
+    case left
+    case downThenRight
+    case downThenLeft
+    case none
+}
+
+enum ShipMovementDireciton: CGFloat {
+    case right = 1.0
+    case left = -1.0
+    case idle = 0.0
 }
 
 
