@@ -21,7 +21,7 @@ class GameScene: SKScene {
     var contactQueue = [SKPhysicsContact]()
     
     var score: Int = 0
-    var shipHealth: Float = 1.0
+    var shipLife: Int = 3
     
     var shipDirection = ShipMovementDireciton.idle
 
@@ -370,7 +370,7 @@ extension GameScene {
         healthLabel.name = kHealthHudName
         healthLabel.fontSize = 17
         healthLabel.fontColor = SKColor.red
-        healthLabel.text = String(format: "Health: %.0f%%", shipHealth * 100.0)
+        healthLabel.text = shipLife.lifeString
       
         healthLabel.position = CGPoint(
             x: healthLabel.frame.size.width/2 + 20,
@@ -401,18 +401,20 @@ extension GameScene {
         }
     }
 
-    func adjustShipHealth(by healthAdjustment: Float) {
+    func adjustShipHealth(by healthAdjustment: Int) {
       
-        shipHealth = max(shipHealth + healthAdjustment, 0)
+        shipLife = shipLife + healthAdjustment
       
         if let health = childNode(withName: kHealthHudName) as? SKLabelNode {
-            health.text = String(format: "Health: %.0f%%", self.shipHealth * 100)
+            health.text = shipLife.lifeString
         }
     }
 
 
 }
 
+
+//MARK: Collision
 extension GameScene: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -429,14 +431,14 @@ extension GameScene: SKPhysicsContactDelegate {
         
             run(SKAction.playSoundFileNamed("ShipHit.wav", waitForCompletion: false))
             
-            adjustShipHealth(by: -0.334)
+            adjustShipHealth(by: 1)
             
-            if shipHealth <= 0 {
+            if shipLife <= 0 {
                 contact.bodyA.node!.removeFromParent()
                 contact.bodyB.node!.removeFromParent()
             } else {
                 if let ship = childNode(withName: kShipName) {
-                    ship.alpha = CGFloat(shipHealth)
+                    ship.alpha = CGFloat(shipLife)
                   
                     if contact.bodyA.node == ship {
                         contact.bodyB.node!.removeFromParent()
