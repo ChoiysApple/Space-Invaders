@@ -17,7 +17,7 @@ let kInvaderFiredBulletCategory: UInt32 = 0x1 << 4
 // Invaders
 let kInvaderGridSpacing = CGSize(width: 12, height: 12)
 let kInvaderRowCount = 6
-let kInvaderColCount = 6
+let kInvaderColCount = 8
 
 // Ship
 let kShipSize = CGSize(width: 30, height: 16)

@@ -17,4 +17,8 @@ extension Int {
         
         return baseString
     }
+    
+    var invaderMovementSound: String {
+        return "fastinvader\(self)"
+    }
 }
