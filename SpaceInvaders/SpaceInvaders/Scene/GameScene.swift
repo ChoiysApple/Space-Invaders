@@ -14,6 +14,7 @@ class GameScene: SKScene {
     var safeAreaInset = UIEdgeInsets()
     
     var invaderMovementDirection: InvaderMovementDirection = .right
+    var invaderMovementCount = 0
     var timeOfLastMove: CFTimeInterval = 0.0
     var timePerMove: CFTimeInterval = 1.0
 
@@ -67,15 +68,11 @@ class GameScene: SKScene {
         for touch in (touches) {
             let location = touch.location(in: self)
 
-            if(location.x < self.size.width*0.3){
+            if(location.x < self.size.width*kShipRelativeControlSize){
                 shipDirection = .left
-                print("Left") 
-                
-            } else if(location.x > self.size.width*0.7){
+            } else if(location.x > self.size.width*(1-kShipRelativeControlSize)){
                 shipDirection = .right
-                print("Right")
             } else {
-                print("Middle")
                 processMiddleTaps()
             }
         }

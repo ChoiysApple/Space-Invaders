@@ -82,6 +82,10 @@ extension GameScene {
         self.timeOfLastMove = currentTime
       }
         
+        // Sound Effect
+        let soundIndex: Int = invaderMovementCount % 4 + 1
+        run(SKAction.playSoundFileNamed(soundIndex.invaderMovementSound, waitForCompletion: false))
+        invaderMovementCount += 1
     }
     
     func determineInvaderMovementDirection() {
@@ -92,14 +96,14 @@ extension GameScene {
         
         switch self.invaderMovementDirection {
         case .right:
-          if (node.frame.maxX >= node.scene!.size.width - 1.0) {
+            if (node.frame.maxX >= node.scene!.size.width - node.frame.width/2) {
             proposedMovementDirection = .downThenLeft
             self.adjustInvaderMovement(to: self.timePerMove * 0.8)
               
             stop.pointee = true
           }
         case .left:
-          if (node.frame.minX <= 1.0) {
+          if (node.frame.minX <= node.frame.width/2) {
             proposedMovementDirection = .downThenRight
             self.adjustInvaderMovement(to: self.timePerMove * 0.8)
               

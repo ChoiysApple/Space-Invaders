@@ -22,6 +22,7 @@ let kInvaderColCount = 8
 // Ship
 let kShipSize = CGSize(width: 30, height: 16)
 let kShipName = "ship"
+let kShipRelativeControlSize = 0.3
 
 // HUD
 let kScoreHudName = "scoreHud"
