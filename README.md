@@ -1,3 +1,5 @@
+<img width="10%" alt="image" src="https://user-images.githubusercontent.com/43776784/161683340-b1f6b22c-7c7d-4133-87d0-73c11c5447e3.png">
+
 # Space-Invaders
 Space Invaders with Swift SpriteKit
 
