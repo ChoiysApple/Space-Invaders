@@ -15,6 +15,7 @@
 		7D50A52327F54A3600BA53F8 /* InvaderBullet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A991227F3F80100FDB418 /* InvaderBullet.wav */; };
 		7D50A52727F59B2800BA53F8 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50A52627F59B2800BA53F8 /* MainMenuScene.swift */; };
 		7D624B0527FAD8FA00EB3711 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D624B0427FAD8FA00EB3711 /* Extensions.swift */; };
+		7DAFC27927FBD0A600462F8F /* Minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DAFC27827FBD0A600462F8F /* Minecraft.ttf */; };
 		7DF0702927EC501E00ED52EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0702827EC501E00ED52EB /* AppDelegate.swift */; };
 		7DF0702F27EC501E00ED52EB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0702E27EC501E00ED52EB /* GameScene.swift */; };
 		7DF0703127EC501E00ED52EB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0703027EC501E00ED52EB /* GameViewController.swift */; };
@@ -34,6 +35,7 @@
 		7D50A52627F59B2800BA53F8 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		7D57EE5E27F2C63E009AB126 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D624B0427FAD8FA00EB3711 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7DAFC27827FBD0A600462F8F /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Minecraft.ttf; sourceTree = "<group>"; };
 		7DF0702527EC501E00ED52EB /* SpaceInvaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceInvaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DF0702827EC501E00ED52EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DF0702E27EC501E00ED52EB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		7D1A991427F3F82E00FDB418 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				7DAFC27727FBCE7100462F8F /* Font */,
 				7DF0703527EC502000ED52EB /* Assets.xcassets */,
 				7D1A991327F3F80900FDB418 /* Sound */,
 			);
@@ -83,6 +86,14 @@
 				7DF0704027EC506F00ED52EB /* GameOverScene.swift */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		7DAFC27727FBCE7100462F8F /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				7DAFC27827FBD0A600462F8F /* Minecraft.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		7DF0701C27EC501D00ED52EB = {
@@ -186,6 +197,7 @@
 			files = (
 				7D50A51E27F5470000BA53F8 /* ShipHit.wav in Resources */,
 				7D50A52027F5470600BA53F8 /* InvaderHit.wav in Resources */,
+				7DAFC27927FBD0A600462F8F /* Minecraft.ttf in Resources */,
 				7DF0703427EC501E00ED52EB /* Main.storyboard in Resources */,
 				7DF0703627EC502000ED52EB /* Assets.xcassets in Resources */,
 				7D50A52227F5491D00BA53F8 /* ShipBullet.wav in Resources */,

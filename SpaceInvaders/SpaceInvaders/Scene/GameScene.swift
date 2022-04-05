@@ -366,7 +366,7 @@ extension GameScene {
         
         let topInset = self.view?.safeAreaInsets.top ?? CGFloat(34)
         
-        let healthLabel = SKLabelNode(fontNamed: "Courier")
+        let healthLabel = SKLabelNode(fontNamed: kFontName)
         healthLabel.name = kHealthHudName
         healthLabel.fontSize = 20
         healthLabel.fontColor = SKColor.red
@@ -379,7 +379,7 @@ extension GameScene {
         addChild(healthLabel)
 
         
-        let scoreLabel = SKLabelNode(fontNamed: "Courier")
+        let scoreLabel = SKLabelNode(fontNamed: kFontName)
         scoreLabel.name = kScoreHudName
         scoreLabel.fontSize = 20
         scoreLabel.fontColor = SKColor.green

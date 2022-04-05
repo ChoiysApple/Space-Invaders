@@ -26,6 +26,7 @@ let kShipName = "ship"
 // HUD
 let kScoreHudName = "scoreHud"
 let kHealthHudName = "healthHud"
+let kFontName = "Minecraft"
 
 // Bullet
 let kShipFiredBulletName = "shipFiredBullet"

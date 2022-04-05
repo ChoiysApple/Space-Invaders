@@ -16,14 +16,14 @@ class MainMenuScene: SKScene {
     
     func createContent() {
         
-        let gameOverLabel = SKLabelNode(fontNamed: "Courier")
+        let gameOverLabel = SKLabelNode(fontNamed: kFontName)
         gameOverLabel.fontSize = 30
         gameOverLabel.fontColor = SKColor.white
         gameOverLabel.text = "Space Invaders"
         gameOverLabel.position = CGPoint(x: self.size.width/2, y: self.size.height/2);
         self.addChild(gameOverLabel)
         
-        let tapLabel = SKLabelNode(fontNamed: "Courier")
+        let tapLabel = SKLabelNode(fontNamed: kFontName)
         tapLabel.fontSize = 20
         tapLabel.fontColor = SKColor.white
         tapLabel.text = "Tap Anywhere"
