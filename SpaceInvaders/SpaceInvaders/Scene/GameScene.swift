@@ -368,7 +368,7 @@ extension GameScene {
         
         let healthLabel = SKLabelNode(fontNamed: "Courier")
         healthLabel.name = kHealthHudName
-        healthLabel.fontSize = 17
+        healthLabel.fontSize = 20
         healthLabel.fontColor = SKColor.red
         healthLabel.text = shipLife.lifeString
       
@@ -381,7 +381,7 @@ extension GameScene {
         
         let scoreLabel = SKLabelNode(fontNamed: "Courier")
         scoreLabel.name = kScoreHudName
-        scoreLabel.fontSize = 17
+        scoreLabel.fontSize = 20
         scoreLabel.fontColor = SKColor.green
         scoreLabel.text = String(format: "Score: %04u", 0)
       
@@ -404,6 +404,8 @@ extension GameScene {
     func adjustShipHealth(by healthAdjustment: Int) {
       
         shipLife = shipLife + healthAdjustment
+        
+        if shipLife <= 0 { return }
       
         if let health = childNode(withName: kHealthHudName) as? SKLabelNode {
             health.text = shipLife.lifeString
@@ -431,7 +433,7 @@ extension GameScene: SKPhysicsContactDelegate {
         
             run(SKAction.playSoundFileNamed("ShipHit.wav", waitForCompletion: false))
             
-            adjustShipHealth(by: 1)
+            adjustShipHealth(by: -1)
             
             if shipLife <= 0 {
                 contact.bodyA.node!.removeFromParent()

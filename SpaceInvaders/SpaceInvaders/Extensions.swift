@@ -9,7 +9,7 @@ import Foundation
 
 extension Int {
     var lifeString: String {
-        var baseString = ""
+        var baseString = "  "
         
         for _ in 1...self {
             baseString.append(contentsOf: "♥︎ ")
