@@ -15,19 +15,17 @@ class MainMenuScene: SKScene {
 
     
     func createContent() {
-        
-        let gameOverLabel = SKLabelNode(fontNamed: kFontName)
-        gameOverLabel.fontSize = 30
-        gameOverLabel.fontColor = SKColor.white
-        gameOverLabel.text = "Space Invaders"
-        gameOverLabel.position = CGPoint(x: self.size.width/2, y: self.size.height/2);
-        self.addChild(gameOverLabel)
+                
+        let logoImageView = SKSpriteNode(imageNamed: "Logo")
+        logoImageView.size = CGSize(width: self.size.width/1.5, height: logoImageView.size.height)
+        logoImageView.position = CGPoint(x: self.size.width/2, y: self.size.height/1.5);
+        self.addChild(logoImageView)
         
         let tapLabel = SKLabelNode(fontNamed: kFontName)
         tapLabel.fontSize = 20
         tapLabel.fontColor = SKColor.white
         tapLabel.text = "Tap Anywhere"
-        tapLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 40);
+        tapLabel.position = CGPoint(x: self.size.width/2, y: logoImageView.frame.origin.y - logoImageView.frame.size.height/3 - 40);
         self.addChild(tapLabel)
         
         // black space color
