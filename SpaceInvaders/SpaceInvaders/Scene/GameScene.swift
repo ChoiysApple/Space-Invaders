@@ -29,6 +29,8 @@ class GameScene: SKScene {
     // Scene Setup and Content Creation
     //MARK: Init
     override func didMove(to view: SKView) {
+        
+        self.backgroundColor = .black
 
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsBody!.categoryBitMask = kSceneEdgeCategory
