@@ -40,6 +40,7 @@ class GameScene: SKScene {
         setupInvaders()
         setupShip()
         
+        randomUFO()
     }
   
     //MARK: Scene Update
@@ -130,7 +131,7 @@ extension GameScene: SKPhysicsContactDelegate {
             
         } else if nodeNames.contains(kUFOName) && nodeNames.contains(kShipFiredBulletName) {
             
-            run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed("UFOHit.wav", waitForCompletion: false))
             adjustScore(by: 1000)
             print("ufo")
             contact.bodyA.node!.removeFromParent()

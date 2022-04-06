@@ -9,11 +9,11 @@ import SpriteKit
 
 extension GameScene {
     
-    func randomEncounter() {
-        
+    func randomUFO() {
+        spwanUFO()
     }
     
-    func encountUFO() {
+    func spwanUFO() {
     
         let ufo = SKSpriteNode(imageNamed: "ufo")
         ufo.name = kUFOName
@@ -24,9 +24,26 @@ extension GameScene {
         ufo.physicsBody!.categoryBitMask = kInvaderCategory
         ufo.physicsBody!.contactTestBitMask = 0x0
         ufo.physicsBody!.collisionBitMask = 0x0
-      
+        
+        
+        let spawnYpoint = CGFloat(kInvaderRowCount) * (InvaderType.size.height * 2) + self.size.height/2 + ufo.size.height
+        var departure = CGPoint(x: -ufo.size.width , y: spawnYpoint)
+        var destination = CGPoint(x: self.size.width + ufo.size.width*2 , y: spawnYpoint)
+        if Bool.random() { swap(&departure, &destination) }
+        
+        ufo.position = departure
+        
         self.addChild(ufo)
         
+        let moveAction = SKAction.sequence([
+            SKAction.move(to: destination, duration: 2.5),
+            SKAction.wait(forDuration: 3.0 / 60.0),
+            SKAction.removeFromParent()
+            ])
+        let soundAction = SKAction.playSoundFileNamed("ufo.wav", waitForCompletion: true)
+        let actionMoveDone = SKAction.removeFromParent()
+            
+        ufo.run(SKAction.sequence([SKAction.group([moveAction, soundAction]), actionMoveDone]) )
         
     }
 }
