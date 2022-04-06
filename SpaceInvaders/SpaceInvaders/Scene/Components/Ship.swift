@@ -32,7 +32,7 @@ extension GameScene {
         let ship = makeShip()
         let bottomInset = self.view?.safeAreaInsets.bottom ?? CGFloat(34)
 
-        ship.position = CGPoint(x: size.width / 2.0, y: kShipSize.height / 2.0 + bottomInset)
+        ship.position = CGPoint(x: size.width / 2.0, y: ship.frame.size.height / 2.0 + bottomInset)
         addChild(ship)
     }
     

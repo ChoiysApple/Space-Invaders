@@ -39,6 +39,7 @@ class GameScene: SKScene {
         setupHud()
         setupInvaders()
         setupShip()
+        
     }
   
     //MARK: Scene Update
@@ -119,7 +120,6 @@ extension GameScene: SKPhysicsContactDelegate {
                 }
             }
 
-            
         } else if nodeNames.contains(InvaderType.name) && nodeNames.contains(kShipFiredBulletName) {
             
             run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
@@ -127,6 +127,14 @@ extension GameScene: SKPhysicsContactDelegate {
             contact.bodyA.node!.removeFromParent()
             contact.bodyB.node!.removeFromParent()
             
+            
+        } else if nodeNames.contains(kUFOName) && nodeNames.contains(kShipFiredBulletName) {
+            
+            run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
+            adjustScore(by: 1000)
+            print("ufo")
+            contact.bodyA.node!.removeFromParent()
+            contact.bodyB.node!.removeFromParent()
         }
     }
     
