@@ -11,6 +11,7 @@ class MainMenuScene: SKScene {
     
     override func didMove(to view: SKView) {
         createContent()
+        run(SKAction.playSoundFileNamed("main.wav", waitForCompletion: false))
     }
 
     

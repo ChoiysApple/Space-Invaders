@@ -18,6 +18,8 @@ class GameOverScene: SKScene {
             self.createContent()
             self.contentCreated = true
         }
+        
+        run(SKAction.playSoundFileNamed("over.wav", waitForCompletion: false))
     }
     
     func createContent() {
