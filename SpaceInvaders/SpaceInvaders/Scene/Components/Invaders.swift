@@ -17,6 +17,7 @@ extension GameScene {
 
         let invader = SKSpriteNode(texture: invaderTextures[0])
         invader.name = InvaderType.name
+        invader.size = CGSize(width: 32, height: 21)
         
         invader.run(SKAction.repeatForever(SKAction.animate(with: invaderTextures, timePerFrame: timePerMove)))
         

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D144CB827EDB6610025303D /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D144CB727EDB6610025303D /* Enums.swift */; };
 		7D144CBA27EDBAD10025303D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D144CB927EDBAD10025303D /* Constants.swift */; };
+		7D1A965A27FD213B00D5EA7A /* ufo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A965927FD213B00D5EA7A /* ufo.wav */; };
 		7D50A51E27F5470000BA53F8 /* ShipHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A991127F3F80100FDB418 /* ShipHit.wav */; };
 		7D50A52027F5470600BA53F8 /* InvaderHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A991027F3F80100FDB418 /* InvaderHit.wav */; };
 		7D50A52227F5491D00BA53F8 /* ShipBullet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A990F27F3F80100FDB418 /* ShipBullet.wav */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		7D144CB727EDB6610025303D /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		7D144CB927EDBAD10025303D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7D1A965927FD213B00D5EA7A /* ufo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ufo.wav; sourceTree = "<group>"; };
 		7D1A990F27F3F80100FDB418 /* ShipBullet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ShipBullet.wav; sourceTree = "<group>"; };
 		7D1A991027F3F80100FDB418 /* InvaderHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = InvaderHit.wav; sourceTree = "<group>"; };
 		7D1A991127F3F80100FDB418 /* ShipHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ShipHit.wav; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				7D1A991027F3F80100FDB418 /* InvaderHit.wav */,
 				7D1A990F27F3F80100FDB418 /* ShipBullet.wav */,
 				7D1A991127F3F80100FDB418 /* ShipHit.wav */,
+				7D1A965927FD213B00D5EA7A /* ufo.wav */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				7DAFC28927FC0EE100462F8F /* fastinvader1.wav in Resources */,
 				7DF0703927EC502000ED52EB /* LaunchScreen.storyboard in Resources */,
 				7D50A52327F54A3600BA53F8 /* InvaderBullet.wav in Resources */,
+				7D1A965A27FD213B00D5EA7A /* ufo.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

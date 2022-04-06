@@ -12,6 +12,7 @@ extension GameScene {
     
     func makeShip() -> SKNode {
         let ship = SKSpriteNode(imageNamed: "Ship.png")
+        ship.size = CGSize(width: 39, height: 20.8)
         ship.name = kShipName
         
         ship.physicsBody = SKPhysicsBody(rectangleOf: ship.frame.size)
