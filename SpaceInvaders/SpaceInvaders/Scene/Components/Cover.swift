@@ -21,7 +21,7 @@ extension GameScene {
         cover.physicsBody!.mass = 0.02
         
         cover.physicsBody!.categoryBitMask = kShipCategory
-        cover.physicsBody!.contactTestBitMask = 0x0
+        cover.physicsBody!.contactTestBitMask = kShipFiredBulletCategory
         
         return cover
     }

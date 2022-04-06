@@ -126,6 +126,12 @@ extension GameScene: SKPhysicsContactDelegate {
             contact.bodyA.node!.removeFromParent()
             contact.bodyB.node!.removeFromParent()
         
+        } else if nodeNames.contains(kCoverName) && nodeNames.contains(kShipFiredBulletName) {
+            
+            run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
+            contact.bodyA.node!.removeFromParent()
+            contact.bodyB.node!.removeFromParent()
+        
         } else if nodeNames.contains(InvaderType.name) && nodeNames.contains(kShipFiredBulletName) {
             
             run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
