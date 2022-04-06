@@ -36,7 +36,7 @@ class GameOverScene: SKScene {
         scoreLabel.fontSize = 30
         scoreLabel.fontColor = .green
         scoreLabel.text = String(format: "Score: %04u", score)
-        scoreLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.position.y - (scoreLabel.fontSize + 40))
+        scoreLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.position.y - (scoreLabel.fontSize + 60))
         self.addChild(scoreLabel)
         
         let tapLabel = SKLabelNode(fontNamed: kFontName)

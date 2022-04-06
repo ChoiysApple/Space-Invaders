@@ -39,5 +39,11 @@ let kShipFiredBulletName = "shipFiredBullet"
 let kInvaderFiredBulletName = "invaderFiredBullet"
 let kBulletSize = CGSize(width:4, height: 8)
 
+// Cover
+let kCoverName = "cover"
+let kCoverRowCount = 2
+let kCoverColCount = 5
+let kCoverSize = 10
+
 // rule
 let kMinInvaderBottomHeight: Float = 32.0

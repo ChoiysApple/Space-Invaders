@@ -40,6 +40,9 @@ class GameScene: SKScene {
         setupInvaders()
         setupShip()
         
+        setUpCover(position: CGPoint(x: self.frame.width*0.5, y: 80))
+        setUpCover(position: CGPoint(x: self.frame.width*0.2, y: 80))
+        setUpCover(position: CGPoint(x: self.frame.width*0.8 , y: 80))
     }
   
     //MARK: Scene Update
