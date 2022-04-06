@@ -44,7 +44,6 @@ enum ShipMovementDireciton: CGFloat {
     case idle = 0.0
 }
 
-
 enum BulletType {
     case shipFired, invaderFired
     

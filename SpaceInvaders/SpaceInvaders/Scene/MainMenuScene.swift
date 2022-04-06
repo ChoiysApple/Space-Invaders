@@ -11,27 +11,36 @@ class MainMenuScene: SKScene {
     
     override func didMove(to view: SKView) {
         createContent()
+        run(SKAction.playSoundFileNamed("main.wav", waitForCompletion: false))
     }
 
     
     func createContent() {
+                
+        let logoImageView = SKSpriteNode(imageNamed: "Logo")
+        logoImageView.size = CGSize(width: self.size.width/1.5, height: logoImageView.size.height)
+        logoImageView.position = CGPoint(x: self.size.width/2, y: self.size.height + logoImageView.size.height)
+        self.addChild(logoImageView)
         
-        let gameOverLabel = SKLabelNode(fontNamed: "Courier")
-        gameOverLabel.fontSize = 30
-        gameOverLabel.fontColor = SKColor.white
-        gameOverLabel.text = "Space Invaders"
-        gameOverLabel.position = CGPoint(x: self.size.width/2, y: self.size.height/2);
-        self.addChild(gameOverLabel)
+
         
-        let tapLabel = SKLabelNode(fontNamed: "Courier")
+        let tapLabel = SKLabelNode(fontNamed: kFontName)
         tapLabel.fontSize = 20
         tapLabel.fontColor = SKColor.white
-        tapLabel.text = "Tap Anywhere"
-        tapLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 40);
+        tapLabel.text = "< Tap Anywhere >"
+        tapLabel.position = CGPoint(x: self.size.width/2, y: -tapLabel.frame.size.height)
         self.addChild(tapLabel)
         
         // black space color
         self.backgroundColor = SKColor.black
+        
+        
+        let logoAction = SKAction.move(to: CGPoint(x: self.size.width/2, y: self.size.height/1.5), duration: 2.0)
+        let labelAction = SKAction.move(to: CGPoint(x: self.size.width/2, y: self.size.height/1.5 - logoImageView.frame.size.height - 40), duration: 2.0)
+        
+        logoImageView.run(logoAction)
+        tapLabel.run(labelAction)
+
 
     }
     

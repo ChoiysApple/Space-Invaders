@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Ship.png",
+      "filename" : "ezgif-5-96c7c06b1d.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Ship@2x.png",
+      "filename" : "ezgif-5-96c7c06b1d@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Ship@3x.png",
+      "filename" : "ezgif-5-96c7c06b1d@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
