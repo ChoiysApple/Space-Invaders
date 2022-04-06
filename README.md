@@ -8,4 +8,6 @@ Base code from [How To Make a Game Like Space Invaders with SpriteKit and Swift]
 
 ### External Resources
 - Font: [Minecraft](https://www.dafont.com/minecraft.font) by Craftron Gaming
-- Logo, Invader movement Sound, UFO: [classicgaming](https://www.classicgaming.cc/classics/space-invaders/flyers)
+- Logo, Invader & UFO movement Sound: [classicgaming](https://www.classicgaming.cc/classics/space-invaders/flyers)
+- UFO & Ship Sprite: [Space Invaders Wiki](https://spaceinvaders.fandom.com/wiki/Space_Invaders_wiki)
+- Explosion Sprite: [FlyClipArt](https://flyclipart.com/space-invaders-icons-noun-project-space-invader-png-340354#)
