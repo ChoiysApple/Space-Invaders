@@ -40,7 +40,6 @@ class GameScene: SKScene {
         setupInvaders()
         setupShip()
         
-        randomUFO()
     }
   
     //MARK: Scene Update

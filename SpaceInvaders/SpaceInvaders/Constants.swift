@@ -22,6 +22,7 @@ let kInvaderColCount = 8
 
 // UFO
 let kUFOName = "ufo"
+let kUFOAppearancePercent = 30
 
 // Ship
 let kShipSize = CGSize(width: 30, height: 16)

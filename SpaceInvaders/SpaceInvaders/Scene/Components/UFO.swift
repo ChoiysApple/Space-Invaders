@@ -10,7 +10,10 @@ import SpriteKit
 extension GameScene {
     
     func randomUFO() {
-        spwanUFO()
+        
+        if Int.random(in: 1...100) <= kUFOAppearancePercent {
+            spwanUFO()
+        }
     }
     
     func spwanUFO() {

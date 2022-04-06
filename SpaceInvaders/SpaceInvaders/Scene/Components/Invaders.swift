@@ -140,6 +140,8 @@ extension GameScene {
         enumerateChildNodes(withName: InvaderType.name) { node, stop in
             node.speed = node.speed * ratio
         }
+        
+        randomUFO()
     }
 
 }
