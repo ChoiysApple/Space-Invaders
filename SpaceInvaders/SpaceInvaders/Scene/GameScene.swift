@@ -67,7 +67,6 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-
         for touch in (touches) {
             let location = touch.location(in: self)
 
@@ -162,6 +161,7 @@ extension GameScene {
         if childNode(withName: InvaderType.name) == nil || isInvaderTooLow || childNode(withName: kShipName) == nil {
             
             let gameOverScene: GameOverScene = GameOverScene(size: size)
+            gameOverScene.score = score
             view?.presentScene(gameOverScene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1.0))
         }
     }

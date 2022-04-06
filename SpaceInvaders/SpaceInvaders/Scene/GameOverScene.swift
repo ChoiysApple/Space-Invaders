@@ -11,6 +11,7 @@ import SpriteKit
 class GameOverScene: SKScene {
     
     var contentCreated = false
+    var score = 0
     
     override func didMove(to view: SKView) {
         
@@ -28,21 +29,25 @@ class GameOverScene: SKScene {
         gameOverLabel.fontSize = 50
         gameOverLabel.fontColor = SKColor.white
         gameOverLabel.text = "Game Over!"
-        gameOverLabel.position = CGPoint(x: self.size.width/2, y: 2.0 / 3.0 * self.size.height);
-        
+        gameOverLabel.position = CGPoint(x: self.size.width/2, y: self.size.height*0.75)
         self.addChild(gameOverLabel)
         
+        let scoreLabel = SKLabelNode(fontNamed: kFontName)
+        scoreLabel.fontSize = 30
+        scoreLabel.fontColor = .green
+        scoreLabel.text = String(format: "Score: %04u", score)
+        scoreLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.position.y - (scoreLabel.fontSize + 40))
+        self.addChild(scoreLabel)
+        
         let tapLabel = SKLabelNode(fontNamed: kFontName)
-        tapLabel.fontSize = 25
+        tapLabel.fontSize = 20
         tapLabel.fontColor = SKColor.white
         tapLabel.text = "(Tap to Play Again)"
-        tapLabel.position = CGPoint(x: self.size.width/2, y: gameOverLabel.frame.origin.y - gameOverLabel.frame.size.height - 40);
-        
+        tapLabel.position = CGPoint(x: self.size.width/2, y: self.size.height*0.25)
         self.addChild(tapLabel)
         
         // black space color
         self.backgroundColor = SKColor.black
-
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)  {
