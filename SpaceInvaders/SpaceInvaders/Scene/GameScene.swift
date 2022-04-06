@@ -39,7 +39,6 @@ class GameScene: SKScene {
         setupHud()
         setupInvaders()
         setupShip()
-        
         setUpCover(position: CGPoint(x: self.frame.width*0.5, y: 80))
         setUpCover(position: CGPoint(x: self.frame.width*0.2, y: 80))
         setUpCover(position: CGPoint(x: self.frame.width*0.8 , y: 80))
@@ -121,7 +120,12 @@ extension GameScene: SKPhysicsContactDelegate {
                     }
                 }
             }
-
+        } else if nodeNames.contains(kCoverName) && nodeNames.contains(kInvaderFiredBulletName) {
+            
+            run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
+            contact.bodyA.node!.removeFromParent()
+            contact.bodyB.node!.removeFromParent()
+        
         } else if nodeNames.contains(InvaderType.name) && nodeNames.contains(kShipFiredBulletName) {
             
             run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
