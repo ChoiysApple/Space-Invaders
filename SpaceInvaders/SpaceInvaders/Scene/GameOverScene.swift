@@ -45,7 +45,7 @@ class GameOverScene: SKScene {
         self.addChild(scoreLabel)
         
         let highScoreAlert = SKLabelNode(fontNamed: kFontName)
-        highScoreAlert.fontSize = 35
+        highScoreAlert.fontSize = 30
         highScoreAlert.fontColor = .yellow
         highScoreAlert.text = String(format: "New High Score!!!", score)
         highScoreAlert.position = CGPoint(x: self.size.width/2, y: scoreLabel.position.y - (highScoreAlert.fontSize + 50))

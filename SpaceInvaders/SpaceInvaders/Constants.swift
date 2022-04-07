@@ -8,9 +8,9 @@
 import SpriteKit
 
 // Physics Category
-let kInvaderCategory: UInt32 = 0x1 << 0
+let kHostileCategory: UInt32 = 0x1 << 0
 let kShipFiredBulletCategory: UInt32 = 0x1 << 1
-let kShipCategory: UInt32 = 0x1 << 2
+let kFriendlyCategory: UInt32 = 0x1 << 2
 let kSceneEdgeCategory: UInt32 = 0x1 << 3
 let kInvaderFiredBulletCategory: UInt32 = 0x1 << 4
 let kUFOCategoty: UInt32 = 0x1 << 5

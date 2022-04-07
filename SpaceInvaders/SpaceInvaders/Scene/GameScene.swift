@@ -144,9 +144,19 @@ extension GameScene: SKPhysicsContactDelegate {
             
             run(SKAction.playSoundFileNamed("UFOHit.wav", waitForCompletion: false))
             adjustScore(by: 1000)
-            print("ufo")
             contact.bodyA.node!.removeFromParent()
             contact.bodyB.node!.removeFromParent()
+            
+        } else if nodeNames.contains(kCoverName) && nodeNames.contains(InvaderType.name) {
+            
+            run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
+            
+            if contact.bodyA.node?.name == kCoverName {
+                contact.bodyA.node!.removeFromParent()
+            } else if contact.bodyB.node?.name == kCoverName {
+                contact.bodyB.node!.removeFromParent()
+            }
+
         }
     }
     

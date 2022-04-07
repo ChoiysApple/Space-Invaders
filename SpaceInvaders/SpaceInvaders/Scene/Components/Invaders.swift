@@ -23,9 +23,9 @@ extension GameScene {
         
         invader.physicsBody = SKPhysicsBody(rectangleOf: invader.frame.size)
         invader.physicsBody!.isDynamic = false
-        invader.physicsBody!.categoryBitMask = kInvaderCategory
+        invader.physicsBody!.categoryBitMask = kHostileCategory
         invader.physicsBody!.contactTestBitMask = 0x0
-        invader.physicsBody!.collisionBitMask = 0x0
+        invader.physicsBody!.collisionBitMask = kFriendlyCategory
       
         return invader
     }
@@ -111,13 +111,13 @@ extension GameScene {
           
         case .downThenLeft:
             proposedMovementDirection = .left
-            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+            self.adjustInvaderMovement(to: self.timePerMove * 0.975)
             
             stop.pointee = true
           
         case .downThenRight:
             proposedMovementDirection = .right
-            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+            self.adjustInvaderMovement(to: self.timePerMove * 0.975)
             
             stop.pointee = true
           

@@ -20,7 +20,7 @@ extension GameScene {
         cover.physicsBody!.affectedByGravity = false
         cover.physicsBody!.mass = 0.02
         
-        cover.physicsBody!.categoryBitMask = kShipCategory
+        cover.physicsBody!.categoryBitMask = kFriendlyCategory
         cover.physicsBody!.contactTestBitMask = kShipFiredBulletCategory
         
         return cover

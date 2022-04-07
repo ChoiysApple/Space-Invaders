@@ -18,13 +18,13 @@ extension GameScene {
             bullet.name = kShipFiredBulletName
             bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.frame.size)
             bullet.physicsBody!.categoryBitMask = kShipFiredBulletCategory
-            bullet.physicsBody!.contactTestBitMask = kInvaderCategory
+            bullet.physicsBody!.contactTestBitMask = kHostileCategory
         case .invaderFired:
             bullet = SKSpriteNode(color: SKColor.magenta, size: kBulletSize)
             bullet.name = kInvaderFiredBulletName
             bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.frame.size)
             bullet.physicsBody!.categoryBitMask = kInvaderFiredBulletCategory
-            bullet.physicsBody!.contactTestBitMask = kShipCategory
+            bullet.physicsBody!.contactTestBitMask = kFriendlyCategory
             break
         }
         
