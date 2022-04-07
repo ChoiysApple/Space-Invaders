@@ -148,6 +148,6 @@ class ReadyScene: SKScene {
         let gameScene = GameScene(size: self.size)
         gameScene.scaleMode = .aspectFill
         
-        self.view?.presentScene(gameScene, transition: SKTransition.doorsCloseHorizontal(withDuration: 1.0))
+        self.view?.presentScene(gameScene, transition: .push(with: .left, duration: 1.0))
     }
 }

@@ -175,7 +175,7 @@ extension GameScene {
             
             let gameOverScene: GameOverScene = GameOverScene(size: size)
             gameOverScene.score = score
-            view?.presentScene(gameOverScene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1.0))
+            view?.presentScene(gameOverScene, transition: SKTransition.doorsOpenVertical(withDuration: 1.0))
         }
     }
 

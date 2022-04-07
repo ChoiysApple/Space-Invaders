@@ -55,7 +55,7 @@ class GameOverScene: SKScene {
         let gameScene = GameScene(size: self.size)
         gameScene.scaleMode = .aspectFill
         
-        self.view?.presentScene(gameScene, transition: SKTransition.doorsCloseHorizontal(withDuration: 1.0))
+        self.view?.presentScene(gameScene, transition: SKTransition.doorsOpenVertical(withDuration: 1.0))
         
     }
 }

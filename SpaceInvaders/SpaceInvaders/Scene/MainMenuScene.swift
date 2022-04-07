@@ -50,7 +50,7 @@ class MainMenuScene: SKScene {
         let readyScene = ReadyScene(size: self.size)
         readyScene.scaleMode = .aspectFill
         
-        self.view?.presentScene(readyScene, transition: SKTransition.fade(withDuration: 1.0))
+        self.view?.presentScene(readyScene, transition: SKTransition.doorsOpenVertical(withDuration: 1.0))
     }
 
 }
