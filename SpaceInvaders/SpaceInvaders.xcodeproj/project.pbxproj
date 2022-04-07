@@ -14,6 +14,8 @@
 		7D1A966127FD4FD200D5EA7A /* over.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A966027FD4FD200D5EA7A /* over.wav */; };
 		7D1A966327FD4FDA00D5EA7A /* main.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A966227FD4FDA00D5EA7A /* main.wav */; };
 		7D1A966727FD515400D5EA7A /* UFOHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A966627FD515400D5EA7A /* UFOHit.wav */; };
+		7D1A966927FD69DF00D5EA7A /* Cover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1A966827FD69DF00D5EA7A /* Cover.swift */; };
+		7D27C62927FE741B00CE67CB /* ReadyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D27C62827FE741B00CE67CB /* ReadyScene.swift */; };
 		7D50A51E27F5470000BA53F8 /* ShipHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A991127F3F80100FDB418 /* ShipHit.wav */; };
 		7D50A52027F5470600BA53F8 /* InvaderHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A991027F3F80100FDB418 /* InvaderHit.wav */; };
 		7D50A52227F5491D00BA53F8 /* ShipBullet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7D1A990F27F3F80100FDB418 /* ShipBullet.wav */; };
@@ -46,10 +48,12 @@
 		7D1A966027FD4FD200D5EA7A /* over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = over.wav; sourceTree = "<group>"; };
 		7D1A966227FD4FDA00D5EA7A /* main.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = main.wav; sourceTree = "<group>"; };
 		7D1A966627FD515400D5EA7A /* UFOHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = UFOHit.wav; sourceTree = "<group>"; };
+		7D1A966827FD69DF00D5EA7A /* Cover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cover.swift; sourceTree = "<group>"; };
 		7D1A990F27F3F80100FDB418 /* ShipBullet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ShipBullet.wav; sourceTree = "<group>"; };
 		7D1A991027F3F80100FDB418 /* InvaderHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = InvaderHit.wav; sourceTree = "<group>"; };
 		7D1A991127F3F80100FDB418 /* ShipHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ShipHit.wav; sourceTree = "<group>"; };
 		7D1A991227F3F80100FDB418 /* InvaderBullet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = InvaderBullet.wav; sourceTree = "<group>"; };
+		7D27C62827FE741B00CE67CB /* ReadyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyScene.swift; sourceTree = "<group>"; };
 		7D50A52627F59B2800BA53F8 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		7D57EE5E27F2C63E009AB126 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D624B0427FAD8FA00EB3711 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				7D50A52627F59B2800BA53F8 /* MainMenuScene.swift */,
+				7D27C62827FE741B00CE67CB /* ReadyScene.swift */,
 				7DF0702E27EC501E00ED52EB /* GameScene.swift */,
 				7DF0704027EC506F00ED52EB /* GameOverScene.swift */,
 				7DAFC27E27FBF84300462F8F /* Components */,
@@ -163,6 +168,7 @@
 				7DAFC28127FBF88900462F8F /* HUD.swift */,
 				7DAFC28327FBF8AB00462F8F /* Invaders.swift */,
 				7D1A965B27FD2C9400D5EA7A /* UFO.swift */,
+				7D1A966827FD69DF00D5EA7A /* Cover.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 				7DF0702F27EC501E00ED52EB /* GameScene.swift in Sources */,
 				7DF0703127EC501E00ED52EB /* GameViewController.swift in Sources */,
 				7DF0704127EC506F00ED52EB /* GameOverScene.swift in Sources */,
+				7D27C62927FE741B00CE67CB /* ReadyScene.swift in Sources */,
 				7D624B0527FAD8FA00EB3711 /* Extensions.swift in Sources */,
 				7DAFC27D27FBE49300462F8F /* Ship.swift in Sources */,
 				7D1A965C27FD2C9400D5EA7A /* UFO.swift in Sources */,
@@ -303,6 +310,7 @@
 				7DAFC28227FBF88900462F8F /* HUD.swift in Sources */,
 				7D144CB827EDB6610025303D /* Enums.swift in Sources */,
 				7DAFC28027FBF87500462F8F /* Bullet.swift in Sources */,
+				7D1A966927FD69DF00D5EA7A /* Cover.swift in Sources */,
 				7D50A52727F59B2800BA53F8 /* MainMenuScene.swift in Sources */,
 				7D144CBA27EDBAD10025303D /* Constants.swift in Sources */,
 			);
@@ -456,7 +464,7 @@
 				DEVELOPMENT_TEAM = ZW6466CHF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpaceInvaders/Base/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Space Invaders";
+				INFOPLIST_KEY_CFBundleDisplayName = Invaders;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -488,7 +496,7 @@
 				DEVELOPMENT_TEAM = ZW6466CHF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpaceInvaders/Base/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Space Invaders";
+				INFOPLIST_KEY_CFBundleDisplayName = Invaders;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

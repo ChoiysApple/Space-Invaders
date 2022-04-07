@@ -39,7 +39,9 @@ class GameScene: SKScene {
         setupHud()
         setupInvaders()
         setupShip()
-        
+        setUpCover(position: CGPoint(x: self.frame.width*0.5, y: 80))
+        setUpCover(position: CGPoint(x: self.frame.width*0.2, y: 80))
+        setUpCover(position: CGPoint(x: self.frame.width*0.8 , y: 80))
     }
   
     //MARK: Scene Update
@@ -67,7 +69,6 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-
         for touch in (touches) {
             let location = touch.location(in: self)
 
@@ -93,7 +94,7 @@ extension GameScene: SKPhysicsContactDelegate {
         contactQueue.append(contact)
     }
     
-    func handle(_ contact: SKPhysicsContact) {
+    private func handle(_ contact: SKPhysicsContact) {
     
         // Ensure you haven't already handled this contact and removed its nodes
         if contact.bodyA.node?.parent == nil || contact.bodyB.node?.parent == nil { return }
@@ -119,7 +120,18 @@ extension GameScene: SKPhysicsContactDelegate {
                     }
                 }
             }
-
+        } else if nodeNames.contains(kCoverName) && nodeNames.contains(kInvaderFiredBulletName) {
+            
+            run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
+            contact.bodyA.node!.removeFromParent()
+            contact.bodyB.node!.removeFromParent()
+        
+        } else if nodeNames.contains(kCoverName) && nodeNames.contains(kShipFiredBulletName) {
+            
+            run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
+            contact.bodyA.node!.removeFromParent()
+            contact.bodyB.node!.removeFromParent()
+        
         } else if nodeNames.contains(InvaderType.name) && nodeNames.contains(kShipFiredBulletName) {
             
             run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
@@ -132,9 +144,19 @@ extension GameScene: SKPhysicsContactDelegate {
             
             run(SKAction.playSoundFileNamed("UFOHit.wav", waitForCompletion: false))
             adjustScore(by: 1000)
-            print("ufo")
             contact.bodyA.node!.removeFromParent()
             contact.bodyB.node!.removeFromParent()
+            
+        } else if nodeNames.contains(kCoverName) && nodeNames.contains(InvaderType.name) {
+            
+            run(SKAction.playSoundFileNamed("InvaderHit.wav", waitForCompletion: false))
+            
+            if contact.bodyA.node?.name == kCoverName {
+                contact.bodyA.node!.removeFromParent()
+            } else if contact.bodyB.node?.name == kCoverName {
+                contact.bodyB.node!.removeFromParent()
+            }
+
         }
     }
     
@@ -148,7 +170,7 @@ extension GameScene: SKPhysicsContactDelegate {
 
 //MARK: Game Over
 extension GameScene {
-    func checkGameOver() {
+    private func checkGameOver() {
       
         var isInvaderTooLow = false
         enumerateChildNodes(withName: InvaderType.name) { node, stop in
@@ -162,7 +184,8 @@ extension GameScene {
         if childNode(withName: InvaderType.name) == nil || isInvaderTooLow || childNode(withName: kShipName) == nil {
             
             let gameOverScene: GameOverScene = GameOverScene(size: size)
-            view?.presentScene(gameOverScene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1.0))
+            gameOverScene.score = score
+            view?.presentScene(gameOverScene, transition: SKTransition.doorsCloseVertical(withDuration: 1.0))
         }
     }
 

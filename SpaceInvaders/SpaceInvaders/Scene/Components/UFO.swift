@@ -24,7 +24,7 @@ extension GameScene {
         
         ufo.physicsBody = SKPhysicsBody(rectangleOf: ufo.frame.size)
         ufo.physicsBody!.isDynamic = false
-        ufo.physicsBody!.categoryBitMask = kInvaderCategory
+        ufo.physicsBody!.categoryBitMask = kHostileCategory
         ufo.physicsBody!.contactTestBitMask = 0x0
         ufo.physicsBody!.collisionBitMask = 0x0
         

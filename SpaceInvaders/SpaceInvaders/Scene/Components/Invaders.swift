@@ -12,20 +12,20 @@ extension GameScene {
     
     func makeInvader(ofType invaderType: InvaderType) -> SKNode {
         
-        let invaderTextures = [SKTexture(imageNamed: "Invader\(invaderType.rawValue)_00"),
-                               SKTexture(imageNamed: "Invader\(invaderType.rawValue)_01")]
+        let invaderTextures = [SKTexture(imageNamed: "Invader\(invaderType.rawValue)00"),
+                               SKTexture(imageNamed: "Invader\(invaderType.rawValue)01")]
 
         let invader = SKSpriteNode(texture: invaderTextures[0])
         invader.name = InvaderType.name
-        invader.size = CGSize(width: 32, height: 21)
+        invader.size = kInvaderSize
         
         invader.run(SKAction.repeatForever(SKAction.animate(with: invaderTextures, timePerFrame: timePerMove)))
         
         invader.physicsBody = SKPhysicsBody(rectangleOf: invader.frame.size)
         invader.physicsBody!.isDynamic = false
-        invader.physicsBody!.categoryBitMask = kInvaderCategory
+        invader.physicsBody!.categoryBitMask = kHostileCategory
         invader.physicsBody!.contactTestBitMask = 0x0
-        invader.physicsBody!.collisionBitMask = 0x0
+        invader.physicsBody!.collisionBitMask = kFriendlyCategory
       
         return invader
     }
@@ -40,8 +40,8 @@ extension GameScene {
 
             var invaderType: InvaderType
 
-            if row % 3 == 0 { invaderType = .a }
-            else if row % 3 == 1 { invaderType = .b }
+            if row < kInvaderRowCount/3 { invaderType = .a }
+            else if row < kInvaderRowCount/3*2 { invaderType = .b }
             else { invaderType = .c }
 
             let invaderPositionY = CGFloat(row) * (InvaderType.size.height * 2) + baseOrigin.y
@@ -97,29 +97,29 @@ extension GameScene {
         
         switch self.invaderMovementDirection {
         case .right:
-            if (node.frame.maxX >= node.scene!.size.width - node.frame.width/2) {
-            proposedMovementDirection = .downThenLeft
-            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+                if (node.frame.maxX >= node.scene!.size.width - node.frame.width/2) {
+                    proposedMovementDirection = .downThenLeft
               
-            stop.pointee = true
-          }
+                    stop.pointee = true
+            }
         case .left:
-          if (node.frame.minX <= node.frame.width/2) {
-            proposedMovementDirection = .downThenRight
-            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+            if (node.frame.minX <= node.frame.width/2) {
+                proposedMovementDirection = .downThenRight
               
-            stop.pointee = true
-          }
+                stop.pointee = true
+            }
           
         case .downThenLeft:
-          proposedMovementDirection = .left
-          
-          stop.pointee = true
+            proposedMovementDirection = .left
+            self.adjustInvaderMovement(to: self.timePerMove * 0.975)
+            
+            stop.pointee = true
           
         case .downThenRight:
-          proposedMovementDirection = .right
-          
-          stop.pointee = true
+            proposedMovementDirection = .right
+            self.adjustInvaderMovement(to: self.timePerMove * 0.975)
+            
+            stop.pointee = true
           
         default:
           break

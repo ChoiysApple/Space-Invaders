@@ -20,7 +20,7 @@ extension GameScene {
         ship.physicsBody!.affectedByGravity = false
         ship.physicsBody!.mass = 0.02
         
-        ship.physicsBody!.categoryBitMask = kShipCategory
+        ship.physicsBody!.categoryBitMask = kFriendlyCategory
         ship.physicsBody!.contactTestBitMask = 0x0
         ship.physicsBody!.collisionBitMask = kSceneEdgeCategory
 
