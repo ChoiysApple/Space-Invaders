@@ -97,29 +97,29 @@ extension GameScene {
         
         switch self.invaderMovementDirection {
         case .right:
-            if (node.frame.maxX >= node.scene!.size.width - node.frame.width/2) {
-            proposedMovementDirection = .downThenLeft
-            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+                if (node.frame.maxX >= node.scene!.size.width - node.frame.width/2) {
+                    proposedMovementDirection = .downThenLeft
               
-            stop.pointee = true
-          }
+                    stop.pointee = true
+            }
         case .left:
-          if (node.frame.minX <= node.frame.width/2) {
-            proposedMovementDirection = .downThenRight
-            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+            if (node.frame.minX <= node.frame.width/2) {
+                proposedMovementDirection = .downThenRight
               
-            stop.pointee = true
-          }
+                stop.pointee = true
+            }
           
         case .downThenLeft:
-          proposedMovementDirection = .left
-          
-          stop.pointee = true
+            proposedMovementDirection = .left
+            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+            
+            stop.pointee = true
           
         case .downThenRight:
-          proposedMovementDirection = .right
-          
-          stop.pointee = true
+            proposedMovementDirection = .right
+            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
+            
+            stop.pointee = true
           
         default:
           break
