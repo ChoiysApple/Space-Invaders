@@ -1,6 +1,6 @@
 <img width="10%" alt="image" src="https://user-images.githubusercontent.com/43776784/161683340-b1f6b22c-7c7d-4133-87d0-73c11c5447e3.png">
 
-# Space-Invaders
+# Short Break Invaders
 >Space Invaders with Swift SpriteKit
 
 <img width="20%" alt="image" src="https://user-images.githubusercontent.com/43776784/162145046-da360487-00c6-44fe-9bdb-f0231a1b11cb.PNG"> <img width="20%" alt="image" src="https://user-images.githubusercontent.com/43776784/162144379-971bdaa5-08fd-4cbd-ac90-76df10eeab7d.gif">
