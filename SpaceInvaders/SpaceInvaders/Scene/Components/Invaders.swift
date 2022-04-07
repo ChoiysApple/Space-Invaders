@@ -111,13 +111,13 @@ extension GameScene {
           
         case .downThenLeft:
             proposedMovementDirection = .left
-            self.adjustInvaderMovement(to: self.timePerMove * 0.975)
+            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
             
             stop.pointee = true
           
         case .downThenRight:
             proposedMovementDirection = .right
-            self.adjustInvaderMovement(to: self.timePerMove * 0.975)
+            self.adjustInvaderMovement(to: self.timePerMove * 0.8)
             
             stop.pointee = true
           
