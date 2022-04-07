@@ -94,7 +94,7 @@ extension GameScene: SKPhysicsContactDelegate {
         contactQueue.append(contact)
     }
     
-    func handle(_ contact: SKPhysicsContact) {
+    private func handle(_ contact: SKPhysicsContact) {
     
         // Ensure you haven't already handled this contact and removed its nodes
         if contact.bodyA.node?.parent == nil || contact.bodyB.node?.parent == nil { return }
@@ -160,7 +160,7 @@ extension GameScene: SKPhysicsContactDelegate {
 
 //MARK: Game Over
 extension GameScene {
-    func checkGameOver() {
+    private func checkGameOver() {
       
         var isInvaderTooLow = false
         enumerateChildNodes(withName: InvaderType.name) { node, stop in
@@ -175,7 +175,7 @@ extension GameScene {
             
             let gameOverScene: GameOverScene = GameOverScene(size: size)
             gameOverScene.score = score
-            view?.presentScene(gameOverScene, transition: SKTransition.doorsOpenVertical(withDuration: 1.0))
+            view?.presentScene(gameOverScene, transition: SKTransition.doorsCloseVertical(withDuration: 1.0))
         }
     }
 

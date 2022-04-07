@@ -17,6 +17,7 @@ class ReadyScene: SKScene {
         createControlGuide()
     }
     
+    //MARK: Score Advance Table
     private func createScoreInfo() {
         
         let spacing: CGFloat = 10.0
@@ -102,6 +103,7 @@ class ReadyScene: SKScene {
 
     }
 
+    //MARK: Control guide
     private func createControlGuide() {
         
         let guidePath = CGMutablePath()

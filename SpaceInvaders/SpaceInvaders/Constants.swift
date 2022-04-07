@@ -48,3 +48,6 @@ let kCoverSize = 10
 
 // rule
 let kMinInvaderBottomHeight: Float = 32.0
+
+// UserDefaults
+let kHighScoreID = "highScore"
