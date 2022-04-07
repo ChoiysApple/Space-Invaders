@@ -19,6 +19,7 @@ let kUFOCategoty: UInt32 = 0x1 << 5
 let kInvaderGridSpacing = CGSize(width: 12, height: 12)
 let kInvaderRowCount = 6
 let kInvaderColCount = 8
+let kInvaderSize = CGSize(width: 32, height: 21)
 
 // UFO
 let kUFOName = "ufo"
