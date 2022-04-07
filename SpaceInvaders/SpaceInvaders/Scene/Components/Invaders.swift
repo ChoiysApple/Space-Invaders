@@ -12,8 +12,8 @@ extension GameScene {
     
     func makeInvader(ofType invaderType: InvaderType) -> SKNode {
         
-        let invaderTextures = [SKTexture(imageNamed: "Invader\(invaderType.rawValue)_00"),
-                               SKTexture(imageNamed: "Invader\(invaderType.rawValue)_01")]
+        let invaderTextures = [SKTexture(imageNamed: "Invader\(invaderType.rawValue)00"),
+                               SKTexture(imageNamed: "Invader\(invaderType.rawValue)01")]
 
         let invader = SKSpriteNode(texture: invaderTextures[0])
         invader.name = InvaderType.name
@@ -40,8 +40,8 @@ extension GameScene {
 
             var invaderType: InvaderType
 
-            if row % 3 == 0 { invaderType = .a }
-            else if row % 3 == 1 { invaderType = .b }
+            if row < kInvaderRowCount/3 { invaderType = .a }
+            else if row < kInvaderRowCount/3*2 { invaderType = .b }
             else { invaderType = .c }
 
             let invaderPositionY = CGFloat(row) * (InvaderType.size.height * 2) + baseOrigin.y

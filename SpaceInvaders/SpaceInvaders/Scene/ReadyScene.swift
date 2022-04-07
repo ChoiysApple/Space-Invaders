@@ -49,7 +49,7 @@ class ReadyScene: SKScene {
         ufoScore.run(SKAction.move(to: CGPoint(x: self.size.width/2+ufoSprite.frame.width, y: scoreTitle.position.y - scoreTitle.frame.height - spacing*2), duration: duration))
         
         
-        let ASprite = SKSpriteNode(imageNamed: "InvaderA_00")
+        let ASprite = SKSpriteNode(imageNamed: "InvaderA00")
         ASprite.size = kInvaderSize
         let AScore = SKLabelNode(fontNamed: kFontName)
         AScore.fontSize = 20
@@ -63,7 +63,7 @@ class ReadyScene: SKScene {
         ASprite.run(SKAction.move(to: CGPoint(x: self.size.width/2+ASprite.frame.width - (ASprite.frame.width+AScore.frame.size.width/2), y: ufoScore.position.y - ufoScore.frame.height), duration: duration))
         AScore.run(SKAction.move(to: CGPoint(x: self.size.width/2+ASprite.frame.width, y: ufoScore.position.y - ufoScore.frame.height - spacing), duration: duration))
         
-        let BSprite = SKSpriteNode(imageNamed: "InvaderB_00")
+        let BSprite = SKSpriteNode(imageNamed: "InvaderB00")
         BSprite.size = kInvaderSize
         let BScore = SKLabelNode(fontNamed: kFontName)
         BScore.fontSize = 20
@@ -77,7 +77,7 @@ class ReadyScene: SKScene {
         BScore.run(SKAction.move(to: CGPoint(x: self.size.width/2+BSprite.frame.width, y: AScore.position.y - AScore.frame.height - spacing), duration: duration))
         BSprite.run(SKAction.move(to: CGPoint(x: self.size.width/2+BSprite.frame.width - (BSprite.frame.width+BScore.frame.size.width/2), y: AScore.position.y - AScore.frame.height), duration: duration))
         
-        let CSprite = SKSpriteNode(imageNamed: "InvaderC_00")
+        let CSprite = SKSpriteNode(imageNamed: "InvaderC00")
         CSprite.size = kInvaderSize
         let CScore = SKLabelNode(fontNamed: kFontName)
         CScore.fontSize = 20
